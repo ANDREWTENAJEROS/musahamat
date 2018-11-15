@@ -85,7 +85,7 @@ class supplierController extends Controller
         // $supplier->business_info3 = $request->input('business_info3');
         $supplier->business_assessment_accreditation = $request->input('business_assessment_accreditation');
         $supplier->business_company_profile = $request->input('business_company_profile');
-        $supplier->business_permeit = $request->input('business_permeit');
+        $supplier->business_permit = $request->input('business_permit');
         $supplier->business_coa = $request->input('business_coa');
         $supplier->business_fpa_license = $request->input('business_fpa_license');
         $supplier->business_credit_terms = $request->input('business_credit_terms');

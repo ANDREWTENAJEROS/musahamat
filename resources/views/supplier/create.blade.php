@@ -60,11 +60,21 @@
 
 
            </div>
-           
            <hr>
-       <div style="display: inline-block">
+           <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    {{Form::label('business_credit_terms', 'Credit Terms:')}}
+                    {{Form::text('business_credit_terms', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => ' '])}}
+                </div>
+                <div class="col-md-6 col-sm-6">
+                    {{Form::label('business_credit_limit', 'Credit Limit:')}}
+                    {{Form::email('business_credit_limit', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => ' '])}}
+                 </div> 
+           </div>
+           <hr>
+       <div class="justify-content-center">
          <div class="row">  
-                            <div class="col-md-2 col-sm-2">
+                            <div class="col-md-2 col-md-offset-1">
 
              {{Form::label('business_assessment_accreditation', 'Assessment and Accreditation')}}</br>
                 <label>
@@ -77,7 +87,7 @@
                 </label>
             </div>
 
-                                    <div class="col-md-2 col-sm-2">
+                                    <div class="col-md-2  ">
 
              {{Form::label('business_company_profile', 'Company Profile')}}</br>
                 <label>
@@ -90,7 +100,7 @@
                 </label>
             </div>
 
-                                    <div class="col-md-2 col-sm-2">
+                                    <div class="col-md-2  ">
 
              {{Form::label('business_permit', 'Business Permit')}}</br>
                 <label>
@@ -102,7 +112,7 @@
                     <span>not-compiled</span>
                 </label>
             </div>
-            <div class="col-md-2 col-sm-2">
+            <div class="col-md-2  ">
 
              {{Form::label('business_fpa_license', 'FPA license')}}</br>
                 <label>
@@ -114,7 +124,7 @@
                     <span>not-compiled</span>
                 </label>
             </div>
-            <div class="col-md-2 col-sm-2">
+            <div class="col-md-2  ">
 
              {{Form::label('business_coa', 'Certificate of Analysis')}}</br>
                 <label>
@@ -127,72 +137,75 @@
                 </label>
             </div>
         </div >
-    </div >
-                        </br>
-                        <div class="row justify-content-center">
-                            <table class="table">
-                                <tr>
-                                    <th>Assessment and Accreditation</th>
-                                    <th>Company Profile</th>
-                                    <th>Business Permit</th>
-                                    <th>FPA license</th>
-                                    <th>Certificate of Analysis</th>
-                                </tr>
-                                    <tr>
-                                        <td> 
-                                        <label>
-                                            {{ Form::radio('business_assessment_accreditation', 'Compiled' , false ,[ 'required' => 'required']) }}
-                                            <span>Compiled</span>
-                                        </label>
-                                        <label>
-                                            {{ Form::radio('business_assessment_accreditation', 'not-compiled' , false) }} 
-                                            <span>not-compiled</span>
-                                        </label>
-                                        </td>
 
-                                        <td>
-                                                <label>
-                                                    {{ Form::radio('business_company_profile', 'Compiled' , false,[ 'required' => 'required']) }}
-                                                    <span>Compiled</span>
-                                                </label>
-                                                <label>
-                                                    {{ Form::radio('business_company_profile', 'not-compiled' , false) }} 
-                                                    <span>not-compiled</span>
-                                                </label>
-                                        </td>
-                                        <td>
-                                                <label>
-                                                    {{ Form::radio('business_permit', 'Compiled' , false,[ 'required' => 'required']) }}
-                                                    <span>Compiled</span>
-                                                </label>
-                                                <label>
-                                                    {{ Form::radio('business_permit', 'not-compiled' , false) }} 
-                                                    <span>not-compiled</span>
-                                                </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                {{ Form::radio('business_fpa_license', 'Compiled' , false,[ 'required' => 'required']) }}
-                                                <span>Compiled</span>
-                                            </label>
-                                            <label>
-                                                {{ Form::radio('business_fpa_license', 'not-compiled' , false) }} 
-                                                <span>not-compiled</span>
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label>
-                                                {{ Form::radio('business_coa', 'Compiled' , false,[ 'required' => 'required']) }}
-                                                <span>Compiled</span>
-                                            </label>
-                                            <label>
-                                                {{ Form::radio('business_coa', 'not-compiled' , false) }} 
-                                                <span>not-compiled</span>
-                                            </label>
-                                        </td>
-                                    </tr>
-                            </table>
-                        </div>   
+</br>
+    <div class="row">
+
+            <div class="col-md-4  ">
+            {{Form::label('business_coa', 'Certificate of Analysis')}}
+            </div>
+            <div class="col-md-4  ">
+            {{ Form::radio('business_coa', 'Compiled' , false,[ 'required' => 'required']) }} <span>Compiled</span>
+            </div>  
+            <div class="col-md-4  ">
+            {{ Form::radio('business_coa', 'not-compiled' , false) }}  <span>not-compiled</span>  
+            </div>
+    </div>
+
+</br>
+    <div class="row">
+
+            <div class="col-md-4  ">
+            {{Form::label('business_coa', 'Certificate of Analysis')}}
+            </div>
+            <div class="col-md-4  ">
+            {{ Form::radio('business_coa', 'Compiled' , false,[ 'required' => 'required']) }} <span>Compiled</span>
+            </div>  
+            <div class="col-md-4  ">
+            {{ Form::radio('business_coa', 'not-compiled' , false) }}  <span>not-compiled</span>  
+            </div>
+    </div>
+    </br>
+    <div class="row">
+
+            <div class="col-md-4  ">
+            {{Form::label('business_coa', 'Certificate of Analysis')}}
+            </div>
+            <div class="col-md-4  ">
+            {{ Form::radio('business_coa', 'Compiled' , false,[ 'required' => 'required']) }} <span>Compiled</span>
+            </div>  
+            <div class="col-md-4  ">
+            {{ Form::radio('business_coa', 'not-compiled' , false) }}  <span>not-compiled</span>  
+            </div>
+    </div>
+    </br>
+    <div class="row">
+
+            <div class="col-md-4  ">
+            {{Form::label('business_coa', 'Certificate of Analysis')}}
+            </div>
+            <div class="col-md-4  ">
+            {{ Form::radio('business_coa', 'Compiled' , false,[ 'required' => 'required']) }} <span>Compiled</span>
+            </div>  
+            <div class="col-md-4  ">
+            {{ Form::radio('business_coa', 'not-compiled' , false) }}  <span>not-compiled</span>  
+            </div>
+    </div>
+    </br>
+    <div class="row">
+
+            <div class="col-md-4  ">
+            {{Form::label('business_coa', 'Certificate of Analysis')}}
+            </div>
+            <div class="col-md-4  ">
+            {{ Form::radio('business_coa', 'Compiled' , false,[ 'required' => 'required']) }} <span>Compiled</span>
+            </div>  
+            <div class="col-md-4  ">
+            {{ Form::radio('business_coa', 'not-compiled' , false) }}  <span>not-compiled</span>  
+            </div>
+    </div>
+    </div >
+                        
                         
                       
         {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
