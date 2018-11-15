@@ -131,7 +131,7 @@ class supplierController extends Controller
         // }
 
 
-        
+
         return view('supplier.edit')->with('supplier', $supplier);
     }
 
@@ -175,12 +175,12 @@ class supplierController extends Controller
         $supplier = supplier::find($id);
 
         // Check for correct user
-        if(auth()->user()->id !==$supplier->user_id){
-            return redirect('/supplier')->with('error', 'Unauthorized Page');
-        }
+        // if(auth()->user()->id !==$supplier->user_id){
+        //     return redirect('/supplier')->with('error', 'Unauthorized Page');
+        // }
 
         
         $supplier->delete();
-        return redirect('/supplier')->with('success', 'Supplier detail Removed');
+        return redirect('/supplier')->with('success', 'Supplier Removed');
     }
 }
