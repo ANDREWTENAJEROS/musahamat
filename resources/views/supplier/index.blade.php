@@ -10,7 +10,7 @@
                     <h2> <a href="/supplier/{{$supplier->id}}"> {{$supplier->business_name}}</a> </h2>
                     </div>
                     <div class="col-md-8 col-sm-8">
-                    <h4>Category:  {{$supplier->business_info1}} </h4>
+                    <h4>Category:  {{$supplier->business_category}} </h4>
                     </div>
                 </div>
             </div>

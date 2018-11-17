@@ -30,4 +30,4 @@ Route::resource('supplier', 'supplierController');
 Route::resource('product_lines', 'product_linesController');
 Auth::routes();
 
-Route::get('/dashboard', 'DashboardController@index');
+// Route::get('/', 'DashboardController@index');
