@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\product_lines;
+use App\supplier;
+
 
 use DB;
 
@@ -46,7 +48,10 @@ class product_linesController extends Controller
     // return view('product_lines.create', compact('id', 'id'));
     // return view('product_lines.create', compact('companies'));
 
-        return view('product_lines.create');
+        $companies = supplier::lists('business_name');
+        return view('product_lines.create', compact('companies'));
+
+        // return view('product_lines.create');
     }
 
     /**
@@ -71,19 +76,20 @@ class product_linesController extends Controller
        
 
        
-         
         $product_lines = new product_lines;
-        $product_lines->product_lines_id = $;
+        $product_lines->supplier_id = $request->input('supplier_id');
         $product_lines->product_line_name = $request->input('product_line_name');
+        $product_lines->MFL_price = $request->input('MFL_price');
+        $product_lines->agritech_price = $request->input('agritech_price');
+        $product_lines->certificate = $request->input('certificate');
+        $product_lines->expiration_date = $request->input('expiration_date');
         $product_lines->save();
-        return redirect('/product_lines')->with('success', 'product line created detail created');
+        return redirect('/product_lines')->with('success', 'product line created');
 
         // $room = product_lines::find($product_lines->room_id);
         // $sdate = product_lines::find($start_date);
-        
-        
     }
-
+   
     /**
      * Display the specified resource.
      *
@@ -127,30 +133,12 @@ class product_linesController extends Controller
 
         // Create product_lines
         $product_lines = product_lines::find($id);
-        $product_lines->transaction_id = $product_lines->transaction_id;
-        $product_lines->start_date = $request->input('start_date');
-        $product_lines->end_date = $request->input('end_date');
-        $product_lines->room_id = $request->input('room_id');
-        $product_lines->roomdate = $product_lines->room_id . $product_lines->start_date;
-        
-        
-        $dtB = $product_lines->start_date;
-        
-        if ( $dtA > $dtB ) {
-
-            return redirect('/product_lines')->with('error', 'Date error: cannot use date before today');
-
-        }
-        if ($product_lines->end_date == $product_lines->start_date ) {
-
-            return redirect('/product_lines')->with('error', 'Date error: cannot start and end on the same day');
-
-        }
-        if ( $product_lines->end_date < $product_lines->start_date ) {
-
-            return redirect('/product_lines')->with('error', 'Date error: cannot end before the start day');
-
-        }
+        $product_lines->supplier_id = $$product_lines->supplier_id;
+        $product_lines->product_line_name = $request->input('product_line_name');
+        $product_lines->MFL_price = $request->input('MFL_price');
+        $product_lines->agritech_price = $request->input('agritech_price');
+        $product_lines->certificate = $request->input('certificate');
+        $product_lines->expiration_date = $request->input('expiration_date');
         $product_lines->save();
         return redirect('/product_lines')->with('success', 'transaction detail Updated');
     }

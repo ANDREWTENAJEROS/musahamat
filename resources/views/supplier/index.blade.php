@@ -1,15 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Supplier</h1>
+    <h1>Suppliers</h1>
+        </br>
     @if(count($supplier) > 0)
         @foreach($supplier as $supplier)
-            <div class="well">
+            <div class="well" style=" padding-bottom: 10px; padding-top: 5px; ">
                 <div class="row">
-                    <div class="col-md-8 col-sm-8">
-                    <h2> <a href="/supplier/{{$supplier->id}}"> {{$supplier->business_name}}</a> </h2>
+                    <div class="col-md-8">
+                    <h4> <a href="/supplier/{{$supplier->id}}"> {{$supplier->business_name}}</a> </h4>
                     </div>
-                    <div class="col-md-8 col-sm-8">
+                    <div class="col-md-4">
                     <h4>Category:  {{$supplier->business_category}} </h4>
                     </div>
                 </div>

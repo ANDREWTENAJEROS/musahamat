@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use App\supplier;
+use App\product_lines;
 
 use DB;
 
@@ -108,10 +109,10 @@ class supplierController extends Controller
      */
     public function show($id)
     {
+        
         $supplier = supplier::find($id);
-        return view('supplier.show')->with('supplier', $supplier);
-        // return view('supplier.show');
-
+        $product_lines = product_lines::orderBy('created_at','desc')->paginate(10);
+        return view('supplier.show')->with('supplier', $supplier,'product_lines', $product_lines);
     }
 
     /**

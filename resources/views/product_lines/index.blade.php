@@ -1,25 +1,33 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Transactions Details</h1>
-    @if(count($transactions_details) > 0)
-        @foreach($transactions_details as $transactions_detail)
+    <h1>Product lines</h1>
+    @if(count($product_lines) > 0)
+        @foreach($product_lines as $product_lines)
             <div class="well">
                 <div class="row">
                     <!-- <div class="col-md-4 col-sm-4">
 
                     </div> -->
-                    <div class="col-md-8 col-sm-8">
-                        <h3><a href="/transactions_details/{{$transactions_detail->id}}">Transaction detail number: {{$transactions_detail->id}}</a></h3>
-                        <h4>Transaction: {{$transactions_detail->transaction_id}}</h4>
-                        <h4>room number: {{$transactions_detail->room_id}}</h4>
-                        <h4>{{$transactions_detail->created_at}} by {{$transactions_detail->user->name}}</small>
+                    <div class="col-md-2">
+                       Name: {{$product_lines->product_line_name}}
+                    </div>
+                    <div class="col-md-4">
+                    certificate: {{$product_lines->certificate}}
+                    </div>
+                    <div class="col-md-2">
+                    expiration date: {{$product_lines->expiration_date}}
+                    </div>
+                    <div class="col-md-2">
+                    MFL Price: {{$product_lines->MFL_price}}
+                    </div>
+                    <div class="col-md-2">
+                    Agritech Price: {{$product_lines->agritech_price}}
                     </div>
                 </div>
             </div>
         @endforeach
-        {{$transactions_details->links()}}
     @else
-        <p>No transactions_details found</p>
+        <p>No product lines found</p>
     @endif
 @endsection

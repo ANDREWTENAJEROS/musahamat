@@ -28,6 +28,7 @@ Route::get('/services', 'PagesController@services');
 
 Route::resource('supplier', 'supplierController');
 Route::resource('product_lines', 'product_linesController');
+
 Auth::routes();
 
 // Route::get('/', 'DashboardController@index');
