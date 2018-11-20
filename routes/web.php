@@ -30,5 +30,5 @@ Route::resource('supplier', 'supplierController');
 Route::resource('product_lines', 'product_linesController');
 
 Auth::routes();
-
+Route::put('roduct_lines/create/{id}', 'UserController@update');
 // Route::get('/', 'DashboardController@index');

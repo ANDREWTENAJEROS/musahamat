@@ -28,8 +28,11 @@ class product_linesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $product_lines = product_lines::orderBy('created_at','desc')->paginate(10);
+    {   
+        session_start();     
+        echo $_SESSION['bid'];
+
+        $product_lines = product_lines::orderBy('created_at','desc')->where('supplier', 'bid')->paginate(10);
         return view('product_lines.index')->with('product_lines', $product_lines);
     }
 
@@ -38,7 +41,7 @@ class product_linesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
 
         // $companies = transactions::lists('id');
@@ -47,9 +50,11 @@ class product_linesController extends Controller
 
     // return view('product_lines.create', compact('id', 'id'));
     // return view('product_lines.create', compact('companies'));
-
-        $companies = supplier::lists('business_name');
-        return view('product_lines.create', compact('companies'));
+        // $companies = supplier::lists('business_name');
+        // return view('product_lines.create', compact('companies'));
+         // this NEEDS TO BE AT THE TOP of the page before any output etc
+         session_start();
+        return view('product_lines.create');
 
         // return view('product_lines.create');
     }
@@ -63,21 +68,18 @@ class product_linesController extends Controller
     public function store(Request $request)
     {
 
-        // $this->validate($request, [
-        //     'title' => 'required',
-        //     'body' => 'required',
-        //     'cover_image' => 'required',
-        //     'condition' => 'required',
-        //     'category' => 'required',
-        //     'location' => 'required',
-        // ]);
+        $this->validate($request, [
+            'supplier' => 'required',
+            'expiration_date' => 'required',
+        ]);
         // Create product_lines
-        // $product_lines = DB::select(SELECT * FROM product_lines);
-       
 
-       
+        // $product_lines = DB::select(SELECT * FROM product_lines);
+        
+
+        session_start(); // this NEEDS TO BE AT THE TOP of the page before any output etc
         $product_lines = new product_lines;
-        $product_lines->supplier_id = $request->input('supplier_id');
+        $product_lines->supplier =$request->input('supplier');
         $product_lines->product_line_name = $request->input('product_line_name');
         $product_lines->MFL_price = $request->input('MFL_price');
         $product_lines->agritech_price = $request->input('agritech_price');
@@ -98,7 +100,7 @@ class product_linesController extends Controller
      */
     public function show($id)
     {
-        $product_lines = product_lines::find($id);
+        $product_lines = product_lines::find($_SESSION['bid']);
         return view('product_lines.show')->with('product_lines', $product_lines);
     }
 

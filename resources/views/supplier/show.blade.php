@@ -198,8 +198,21 @@
     @endif</div>
 <div class="col-md-6  ">
 @if(!Auth::guest())
-            <a href="/product_lines/create/" class="btn btn-default">Add </a>
+            <a onclick="" href="{{ route('product_lines.index', $supplier->id) }}" class="btn btn-default">View Certificates </a>
+            <a onclick="" href="{{ route('product_lines.create', $supplier->id) }}" class="btn btn-default">Add </a>
 </br>
+
+    <script>
+            var storedValue = {{$supplier->id}};
+            localStorage.setItem("server", storedValue);
+
+        //     print(storedValue);       
+        //     console.log(storedValue);
+
+        </script>
+    
+
+
 {{--
 @if(count($product_lines) > 0)
         @foreach($product_lines as $product_lines)

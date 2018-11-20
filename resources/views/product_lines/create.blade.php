@@ -4,15 +4,23 @@
     <h1></h1>
     {!! Form::open(['action' => 'product_linesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group">
-            {{Form::label('supplier_id', 'Supplier')}}
-            {{Form::select('supplier_id', $companies, ['class' => '']) }}
-            
         </div>
         <!-- <div class="form-group">
             {{Form::label('room_id', 'Room Number')}}
             {!! Form::select('room_id', array('101' => '101', '102' => '102','201' => '201','202' => '202',)) !!}
             
         </div> -->
+        <script>
+            var storedValue = localStorage.getItem("server");
+            console.log(storedValue);
+        </script>
+
+       
+       <div class="">
+                    {{Form::label('supplier', 'Supplier name:')}}
+                    {{Form::text('supplier', $_SESSION['bid'], ['class' => 'form-control', 'required' => 'required', 'placeholder' => ' '])}}
+        </div>
+
         <div class="">
                     {{Form::label('product_line_name', 'Product line:')}}
                     {{Form::text('product_line_name', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => ' '])}}

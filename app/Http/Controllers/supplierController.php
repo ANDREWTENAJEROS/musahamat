@@ -112,6 +112,11 @@ class supplierController extends Controller
         
         $supplier = supplier::find($id);
         $product_lines = product_lines::orderBy('created_at','desc')->paginate(10);
+
+        session_start();            
+        $_SESSION['bid'] = $supplier->id;
+        $_SESSION['id'] = $supplier->business_name;
+
         return view('supplier.show')->with('supplier', $supplier,'product_lines', $product_lines);
     }
 
