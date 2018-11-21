@@ -5,19 +5,9 @@
     {!! Form::open(['action' => 'product_linesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     <div class="form-group">
         </div>
-        <!-- <div class="form-group">
-            {{Form::label('room_id', 'Room Number')}}
-            {!! Form::select('room_id', array('101' => '101', '102' => '102','201' => '201','202' => '202',)) !!}
-            
-        </div> -->
-        <script>
-            var storedValue = localStorage.getItem("server");
-            console.log(storedValue);
-        </script>
-
-       
-       <div class="">
-                    {{Form::label('supplier', 'Supplier name:')}}
+       <h3>Add product line for {{$_SESSION['id']}}</h3>
+       <div id="divCheckbox" style="display: none;">
+                    {{Form::label('supplier', 'Supplier id:')}}
                     {{Form::text('supplier', $_SESSION['bid'], ['class' => 'form-control', 'required' => 'required', 'placeholder' => ' '])}}
         </div>
 

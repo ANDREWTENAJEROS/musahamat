@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Suppliers</h1>
+    <h1>Suppliers</h1>     
+   
         </br>
     @if(count($supplier) > 0)
         @foreach($supplier as $supplier)
@@ -12,6 +13,7 @@
                     </div>
                     <div class="col-md-4">
                     <h4>Category:  {{$supplier->business_category}} </h4>
+                    
                     </div>
                 </div>
             </div>

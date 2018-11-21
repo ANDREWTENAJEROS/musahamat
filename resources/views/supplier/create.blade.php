@@ -39,16 +39,16 @@
            <div class="row">
                 <div class="col-md-3 col-sm-3">
                 {{Form::label('business_capitalization', 'Capitalization:')}}
-                {{Form::text('business_capitalization', '', ['class' => 'form-control', 'placeholder' => ' '])}}
+                {{Form::text('business_capitalization', '', ['class' => 'form-control', 'placeholder' => '₱'])}}
                 </div>
         
                 <div class="col-md-3 col-sm-3">
-                {{Form::label('business_nature', 'Business Nature:')}}
+                {{Form::label('business_nature', 'Nature of Business:')}}
                 {{Form::text('business_nature', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => ' '])}}
                 </div>
 
                 <div class="col-md-3 col-sm-3">
-                {{Form::label('business_type_id', 'Business Type:')}}
+                {{Form::label('business_type_id', 'Type of Business Organization:')}}
                 {{Form::text('business_type_id', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => ' '])}}
                 </div>
 

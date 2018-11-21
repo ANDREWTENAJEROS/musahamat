@@ -10,7 +10,7 @@ class product_lines extends Model
     // Table Name
     protected $table = 'product_lines';
     // Primary Key
-    public $primaryKey = 'product_line_id';
+    public $primaryKey = 'id';
 
     public $timestamps = false;
 

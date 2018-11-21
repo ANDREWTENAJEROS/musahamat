@@ -1,15 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="/supplier"  class="btn btn-default hidden-print">Go Back</a>
+    <a href="/supplier" class="btn btn-default">Go Back</a>
     @if(!Auth::guest())
+    <a href="/supplier/{{$supplier->id}}/print" style="margin-right: 20px;" class="btn btn-default pull-right">PRINT</a>
 
             {!!Form::open(['action' => ['supplierController@destroy', $supplier->id], 'method' => 'supplier', 'class' => 'pull-right'])!!}
                 {{Form::hidden('_method', 'DELETE')}}
-                {{Form::submit('Delete', ['class' => 'btn btn-danger hidden-print'])}}
+                {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
             {!!Form::close()!!}
 
-            <a href="/supplier/{{$supplier->id}}/edit" style="margin-right: 20px;" class="hidden-print btn btn-default pull-right">Edit</a>
+            <a href="/supplier/{{$supplier->id}}/edit" style="margin-right: 20px;" class="btn btn-default pull-right">Edit</a>
 
     @endif
     
@@ -200,7 +201,7 @@
     </div >
 @else
 <h4>Certificates</h4>
-<hr class="hidden-print">
+<hr>
 @endif
 
 @if(!Auth::guest())
@@ -208,9 +209,9 @@
             <div class="col-md-4  ">
              </div >
             <div class="col-md-4  " >
-            <a onclick="" href="{{ route('product_lines.index', $supplier->id) }}" class="hidden-print btn btn-default pull-right" style="margin-right: 0px;">View Certificates </a>
+            <a onclick="" href="{{ route('product_lines.index', $supplier->id) }}" class="btn btn-default pull-right" style="margin-right: 0px;">View Certificates </a>
            
-            <a onclick="" href="{{ route('product_lines.create', $supplier->id) }}" class="hidden-print btn btn-default pull-right" style="margin-right: 20px;">Add </a>
+            <a onclick="" href="{{ route('product_lines.create', $supplier->id) }}" class="btn btn-default pull-right" style="margin-right: 20px;">Add </a>
             </div >
         </br><hr>
     <script>
@@ -282,7 +283,7 @@
                 <td>
                     {!!Form::open(['action' => ['product_linesController@destroy', $product_lines->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                         {{Form::hidden('_method', 'DELETE')}}
-                        {{Form::submit('Delete', ['class' => 'btn btn-danger hidden-print'])}}
+                        {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
                     {!!Form::close()!!}
                 </td>
             </tr>

@@ -34,6 +34,15 @@ class supplierController extends Controller
         return view('supplier.index')->with('supplier',$supplier);
     }
 
+    public function search(Request $request)
+    {session_start();   
+        // $supplier = supplier::all();
+          
+        $search = $request->input('search');
+
+        $supplier = DB::table('supplier')->where('business_name', 'like', $search)->paginate(10)->get();                
+        return view('supplier.index')->with('supplier',$supplier);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -116,6 +125,11 @@ class supplierController extends Controller
         $_SESSION['id'] = $supplier->business_name;
         // return view('product_lines.index')->with('product_lines', $product_lines);
         return view('supplier.show')->with('supplier', $supplier);
+    }
+    public function print($id)
+    {       
+        $supplier = supplier::find($id);
+        return view('supplier.print')->with('supplier', $supplier);
     }
 
     /**

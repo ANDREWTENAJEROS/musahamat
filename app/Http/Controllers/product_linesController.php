@@ -37,6 +37,15 @@ class product_linesController extends Controller
         return view('product_lines.index')->with('product_lines', $product_lines);
     }
 
+    public function search()
+    {   
+        session_start();     
+        $_SESSION['bid'];
+
+        // $product_lines = product_lines::orderBy('product_line_name','desc')->where('supplier','like','bid')->paginate(10);
+        $product_lines = DB::table('product_lines')->where('supplier', '=', $_SESSION['bid'])->get();
+        return view('product_lines.index')->with('product_lines', $product_lines);
+    }
     /**
      * Show the form for creating a new resource.
      *
@@ -67,8 +76,8 @@ class product_linesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-
+    {  
+       
         $this->validate($request, [
             'supplier' => 'required',
             'expiration_date' => 'required',
@@ -87,7 +96,8 @@ class product_linesController extends Controller
         $product_lines->certificate = $request->input('certificate');
         $product_lines->expiration_date = $request->input('expiration_date');
         $product_lines->save();
-        return redirect('/product_lines')->with('success', 'product line created');
+        $url = 'supplier/'.$_SESSION['bid'];
+        return redirect($url)->with('success', 'product line created');
 
         // $room = product_lines::find($product_lines->room_id);
         // $sdate = product_lines::find($start_date);
@@ -116,10 +126,7 @@ class product_linesController extends Controller
         $product_lines = product_lines::find($id);
 
         // Check for correct user
-        if(auth()->user()->id !==$product_lines->user_id){
-            return redirect('/product_lines')->with('error', 'Unauthorized Page');
-        }
-
+       
         return view('product_lines.edit')->with('product_lines', $product_lines);
     }
 
@@ -136,14 +143,16 @@ class product_linesController extends Controller
 
         // Create product_lines
         $product_lines = product_lines::find($id);
-        $product_lines->supplier_id = $$product_lines->supplier_id;
+        $product_lines->supplier =$request->input('supplier');
         $product_lines->product_line_name = $request->input('product_line_name');
         $product_lines->MFL_price = $request->input('MFL_price');
         $product_lines->agritech_price = $request->input('agritech_price');
         $product_lines->certificate = $request->input('certificate');
         $product_lines->expiration_date = $request->input('expiration_date');
         $product_lines->save();
-        return redirect('/product_lines')->with('success', 'transaction detail Updated');
+        $url = 'supplier/'.$_SESSION['bid'];
+        return redirect($url)->with('success', 'Product line updated');
+
     }
 
     /**
@@ -157,12 +166,8 @@ class product_linesController extends Controller
         $product_lines = product_lines::find($id);
 
         // Check for correct user
-        if(auth()->user()->id !==$product_lines->user_id){
-            return redirect('/product_lines')->with('error', 'Unauthorized Page');
-        }
-
         
         $product_lines->delete();
-        return redirect('/product_lines')->with('success', 'transaction detail Removed');
+        return redirect('/product_lines')->with('success', 'Product line Removed');
     }
 }
