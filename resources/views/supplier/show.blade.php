@@ -11,6 +11,7 @@
             <a href="/supplier/{{$supplier->id}}/edit" style="margin-right: 20px;" class="btn btn-default pull-right">Edit</a>
 
     @endif
+    
     <h2>{{$supplier->business_name}}</h2>
     <div class="row">
                 <div class="col-md-4 col-sm-4">
@@ -187,21 +188,28 @@
 </div>  
 
 </div>
-    </div >
 <hr>
+
+
+@if(!Auth::guest())
 <div class="row">
-
-<div class="col-md-6 ">
-@if(!Auth::guest())
+    <div class="col-md-4  ">
     <h4>Certificates</h4>
-          
-    @endif</div>
-<div class="col-md-6  ">
-@if(!Auth::guest())
-            <a onclick="" href="{{ route('product_lines.index', $supplier->id) }}" class="btn btn-default">View Certificates </a>
-            <a onclick="" href="{{ route('product_lines.create', $supplier->id) }}" class="btn btn-default">Add </a>
-</br>
+    </div >
+@else
+<h4>Certificates</h4>
+<hr>
+@endif
 
+@if(!Auth::guest())
+
+            <div class="col-md-4  ">
+            <a onclick="" href="{{ route('product_lines.index', $supplier->id) }}" class="btn btn-default pull-right">View Certificates </a>
+            </div >
+            <div class="col-md-4  ">
+            <a onclick="" href="{{ route('product_lines.create', $supplier->id) }}" class="btn btn-default pull-left">Add </a>
+            </div >
+        </br><hr>
     <script>
             var storedValue = {{$supplier->id}};
             localStorage.setItem("server", storedValue);
@@ -211,9 +219,16 @@
 
         </script>
     
+     
 
+ 
+    </div> 
+    {{--  --}}
+   
+    </div>
+    @endif
+    <?php $product_lines = DB::table('product_lines')->where('supplier', '=', $_SESSION['bid'])->get();?>
 
-{{--
 @if(count($product_lines) > 0)
         @foreach($product_lines as $product_lines)
             <div class="well">
@@ -241,9 +256,6 @@
         @endforeach
     @else
         <p>No product lines found</p>
-    @endif
-    </div> 
-    --}}
     @endif
 <hr>
 </br>

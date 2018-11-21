@@ -30,9 +30,10 @@ class product_linesController extends Controller
     public function index()
     {   
         session_start();     
-        echo $_SESSION['bid'];
+        $_SESSION['bid'];
 
-        $product_lines = product_lines::orderBy('created_at','desc')->where('supplier', 'bid')->paginate(10);
+        // $product_lines = product_lines::orderBy('product_line_name','desc')->where('supplier','like','bid')->paginate(10);
+        $product_lines = DB::table('product_lines')->where('supplier', '=', $_SESSION['bid'])->get();
         return view('product_lines.index')->with('product_lines', $product_lines);
     }
 
