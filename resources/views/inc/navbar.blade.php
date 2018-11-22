@@ -1,5 +1,5 @@
-<nav class="navbar navbar-inverse">
-    <div class="container">
+<nav class="navbar navbar-inverse " style="position: fixed !important;width: 100%  ; top: 0;overflow: hidden;">
+    <div class="container"  style="">
         <div class="navbar-header">
 
             <!-- Collapsed Hamburger -->
@@ -61,3 +61,8 @@
         </div>
     </div>
 </nav>
+<div class="hidden-print">
+</br>
+</br>
+</br>
+</div>

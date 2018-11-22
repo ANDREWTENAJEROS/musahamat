@@ -32210,9 +32210,9 @@ if (true) {
 
   warn = function (msg, vm) {
     if (hasConsole && (!config.silent)) {
-      console.error("[Vue warn]: " + msg + (
-        vm ? generateComponentTrace(vm) : ''
-      ));
+      // console.error("[Vue warn]: " + msg + (
+      //   vm ? generateComponentTrace(vm) : ''
+      // ));
     }
   };
 

@@ -123,7 +123,8 @@ class product_linesController extends Controller
         $product_lines->expiration_date = $request->input('expiration_date');
         $product_lines->save();
         $url = 'supplier/'.$_SESSION['bid'];
-        return redirect($url)->with('success', 'Certificate added');
+        echo $url;
+        return redirect($url)->with('success', 'Document added');
 
         // $room = product_lines::find($product_lines->room_id);
         // $sdate = product_lines::find($start_date);
@@ -176,8 +177,8 @@ class product_linesController extends Controller
         $product_lines->certificate = $request->input('certificate');
         $product_lines->expiration_date = $request->input('expiration_date');
         $product_lines->save();
-        $url = 'supplier/'.$_SESSION['bid'];
-        return redirect($url)->with('success', 'Product line updated');
+        $url = 'supplier/'. $product_lines->supplier;
+        return redirect($url)->with('success', 'Document updated');
 
     }
 
@@ -194,6 +195,6 @@ class product_linesController extends Controller
         // Check for correct user
         
         $product_lines->delete();
-        return redirect('/product_lines')->with('success', 'Product line Removed');
+        return redirect('/product_lines')->with('success', 'Document Removed');
     }
 }

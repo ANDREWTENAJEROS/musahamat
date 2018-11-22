@@ -78,12 +78,12 @@
 
                     {{Form::label('business_assessment_accreditation', 'Assessment and Accreditation From')}}</br>
                     <label>
-                        {{ Form::radio('business_assessment_accreditation', 'Compiled' , false ,[ 'required' => 'required']) }}
-                        <span>Compiled</span>
+                        {{ Form::radio('business_assessment_accreditation', 'complied' , false ,[ 'required' => 'required']) }}
+                        <span>complied</span>
                     </label>
                     <label>
-                        {{ Form::radio('business_assessment_accreditation', 'not-compiled' , false) }} 
-                        <span>not-compiled</span>
+                        {{ Form::radio('business_assessment_accreditation', 'not-complied' , false) }} 
+                        <span>not-complied</span>
                     </label>
                 </div>
 
@@ -91,12 +91,12 @@
 
                     {{Form::label('business_company_profile', 'Company Profile')}}</br>
                     <label>
-                        {{ Form::radio('business_company_profile', 'Compiled' , false,[ 'required' => 'required']) }}
-                        <span>Compiled</span>
+                        {{ Form::radio('business_company_profile', 'complied' , false,[ 'required' => 'required']) }}
+                        <span>complied</span>
                     </label>
                     <label>
-                        {{ Form::radio('business_company_profile', 'not-compiled' , false) }} 
-                        <span>not-compiled</span>
+                        {{ Form::radio('business_company_profile', 'not-complied' , false) }} 
+                        <span>not-complied</span>
                     </label>
                 </div>
 
@@ -104,12 +104,12 @@
 
              {{Form::label('business_permit', 'Business Permit')}}</br>
                 <label>
-                    {{ Form::radio('business_permit', 'Compiled' , false,[ 'required' => 'required']) }}
-                    <span>Compiled</span>
+                    {{ Form::radio('business_permit', 'complied' , false,[ 'required' => 'required']) }}
+                    <span>complied</span>
                 </label>
                 <label>
-                    {{ Form::radio('business_permit', 'not-compiled' , false) }} 
-                    <span>not-compiled</span>
+                    {{ Form::radio('business_permit', 'not-complied' , false) }} 
+                    <span>not-complied</span>
                 </label>
             </div>
            
@@ -122,34 +122,34 @@
 
             {{Form::label('business_fpa_license', 'FPA license')}}</br>
             <label>
-                {{ Form::radio('business_fpa_license', 'Compiled' , false,[ 'required' => 'required']) }}
-                <span>Compiled</span>
+                {{ Form::radio('business_fpa_license', 'complied' , false,[ 'required' => 'required']) }}
+                <span>complied</span>
             </label>
             <label>
-                {{ Form::radio('business_fpa_license', 'not-compiled' , false) }} 
-                <span>not-compiled</span>
+                {{ Form::radio('business_fpa_license', 'not-complied' , false) }} 
+                <span>not-complied</span>
             </label>
             </div> -->
             <div class="col-md-4  ">
                 {{Form::label('business_coa', 'Certificate of Analysis')}}</br>
                 <label>
-                    {{ Form::radio('business_coa', 'Compiled' , false,[ 'required' => 'required']) }}
-                    <span>Compiled</span>
+                    {{ Form::radio('business_coa', 'complied' , false,[ 'required' => 'required']) }}
+                    <span>complied</span>
                 </label>
                 <label>
-                    {{ Form::radio('business_coa', 'not-compiled' , false) }} 
-                    <span>not-compiled</span>
+                    {{ Form::radio('business_coa', 'not-complied' , false) }} 
+                    <span>not-complied</span>
                 </label>
             </div>
             <div class="col-md-4  ">
                 {{Form::label('business_info1', 'Certificate of Registration')}}</br>
                 <label>
-                    {{ Form::radio('business_info1', 'Compiled' , false,[ 'required' => 'required']) }}
-                    <span>Compiled</span>
+                    {{ Form::radio('business_info1', 'complied' , false,[ 'required' => 'required']) }}
+                    <span>complied</span>
                 </label>
                 <label>
-                    {{ Form::radio('business_info1', 'not-compiled' , false) }} 
-                    <span>not-compiled</span>
+                    {{ Form::radio('business_info1', 'not-complied' , false) }} 
+                    <span>not-complied</span>
                 </label>
             </div>
             </div >

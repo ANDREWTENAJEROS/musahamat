@@ -1,6 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@charset "UTF-8";
-
-
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
 
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -238,14 +236,13 @@ th {
     box-shadow: none !important;
     text-shadow: none !important;
   }
-
+.pagebreak { page-break-before: always; } 
   a,
   a:visited {
     text-decoration: underline;
   }
 
   a[href]:after {
-    content: " (" attr(href) ")";
   }
 
   abbr[title]:after {
@@ -300,7 +297,7 @@ th {
   .label {
     border: 1px solid #000;
   }
-
+  .pagebreak { page-break-before: always; } 
   .table {
     border-collapse: collapse !important;
   }
@@ -1415,7 +1412,7 @@ textarea {
 }
 
 a {
-  color: #3097D1;
+  color: #636b6f;
   text-decoration: none;
 }
 
@@ -8267,6 +8264,16 @@ button.close {
 
 .visible-print-block {
   display: none !important;
+}
+
+.printOnly {
+  display : none;
+}
+
+@media print {
+   #printOnly {
+      display : block;
+   }
 }
 
 @media print {

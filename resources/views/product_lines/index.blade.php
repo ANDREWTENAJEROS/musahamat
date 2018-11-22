@@ -10,7 +10,7 @@
                                 <th>certificate</th>
                                 <th>expiration date</th>
                                 <th>MFL Price</th>
-                                <th>Agritech Price</th>
+                                <th>Agrotech Price</th>
                                 <th></th> 
                                 <th></th> 
 
@@ -34,12 +34,12 @@
                     MFL Price: {{$product_lines->MFL_price}}
                     </div>
                     <div class="col-md-2">
-                    Agritech Price: {{$product_lines->agritech_price}}
+                    Agrotech Price: {{$product_lines->agritech_price}}
                     </div>
                 </div>
             </div>--}}
 
-
+        @if($product_lines->product_line_name != null)
               <tr>
                 <!-- <td>{{$product_lines->id}}</td> -->
                 <!-- <td><a href="/product_lines/{{$product_lines->id}}">{{$product_lines->product_line_name}}</a></td> -->
@@ -57,6 +57,7 @@
                     {!!Form::close()!!}
                 </td>
             </tr>
+            @endif
         @endforeach
         </table>
     @else
