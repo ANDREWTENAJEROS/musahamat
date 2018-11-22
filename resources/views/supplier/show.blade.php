@@ -122,7 +122,7 @@
             </div > -->
 
     <hr>
-    <div class="justify-content-center">
+    <!-- <div class="justify-content-center">
     <div class="row">
 
             <div class="col-md-6  ">
@@ -177,7 +177,7 @@
             </div>  
            
     </div>
-    </br>
+    </br> 
 
     <div class="row">
 
@@ -190,17 +190,104 @@
 
 </div>
 <hr>
-
-
-
-@if(!Auth::guest())
+-->
 <div class="row">
     <div class="col-md-4  ">
-    <h4>Certificates</h4>
+    <!-- <h4>Certificates</h4> -->
+    </div >
+    <?php $product_lines = DB::table('product_lines')->where('supplier', '=', $_SESSION['bid'])->get();?>
+    @if(Auth::guest())
+    <h4>Documents</h4>
+    @else
+    <div class="table">
+        <tr>
+        <th><h4>Documents</h4></th>
+        <th><a onclick="" href="{{ route('product_lines.create', $supplier->id) }}" class="hidden-print btn btn-default pull-right" style="margin-right: 20px;">Add document</a></th>
+        <tr>
+     
+    @endif
+@if(count($product_lines) > 0 )
+<table class="table table-striped">
+                            <tr>
+                                
+                                <th>Name</th>
+                                <th></th>
+                                <th>expiration date</th>
+                                <th></th> 
+                                
+
+                            </tr>
+            <tr>
+                <td>Assessment and Accreditation Form</td>
+                <td>{{$supplier->business_assessment_accreditation}}</td>
+                <td></td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td>Company Profile</td>
+                <td>{{$supplier->business_company_profile}}</td>
+                <td></td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td>Business Permit</td>
+                <td>{{$supplier->business_permit}}</td>
+                <td></td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td>Certificate of Analysis</td>
+                <td>{{$supplier->business_coa}}</td>
+                <td></td>
+                <td></td>
+
+            </tr>
+            <tr>
+                <td>Certificate of Registration</td>
+                <td>{{$supplier->business_info1}}</td>
+                <td></td>
+                <td></td>
+
+            </tr>
+           
+        @foreach($product_lines as $product_lines)
+            @if($product_lines->product_line_name == null)
+            <tr>
+                
+                <td><a href="/product_lines/{{$product_lines->id}}/edit">{{$product_lines->certificate}}</a></td>
+                <td></td>
+                <td>{{$product_lines->expiration_date}}</td>
+        
+                <!-- <td><a href="/product_lines/{{$product_lines->id}}/edit" class="btn btn-default">Edit</a></td> -->
+                <td style=" padding-bottom: 6px; padding-top: 6px; ">
+                    {!!Form::open(['action' => ['product_linesController@destroy', $product_lines->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
+                        {{Form::hidden('_method', 'DELETE')}}
+                        {{Form::submit('Delete', ['class' => 'btn btn-danger hidden-print' , 'style' => 'padding-bottom: 0px; padding-top: 0px;'])}}
+                    {!!Form::close()!!}
+                </td>
+            </tr>
+            @endif
+        @endforeach
+        </table>
+    @else
+        <p>No product lines found</p>
+    @endif
+<hr>
+
+@if(!Auth::guest())
+
+    
+
+<div class="row">
+    <div class="col-md-4  ">
+    <h4>Product Lines</h4>
     </div >
 @else
-<h4>Certificates</h4>
-<hr class="hidden-print">
+<h4>Product Lines</h4>
+<!-- <hr class="hidden-print"> -->
 @endif
 
 @if(!Auth::guest())
@@ -208,22 +295,11 @@
             <div class="col-md-4  ">
              </div >
             <div class="col-md-4  " >
-            <a onclick="" href="{{ route('product_lines.index', $supplier->id) }}" class="hidden-print btn btn-default pull-right" style="margin-right: 0px;">View Certificates </a>
+            <!-- <a onclick="" href="{{ route('product_lines.index', $supplier->id) }}" class="hidden-print btn btn-default pull-right" style="margin-right: 0px;">View Certificates </a> -->
            
-            <a onclick="" href="{{ route('product_lines.create', $supplier->id) }}" class="hidden-print btn btn-default pull-right" style="margin-right: 20px;">Add </a>
+            <a onclick="" href="{{ route('product_lines.create', $supplier->id) }}" class="hidden-print btn btn-default pull-right" style="margin-right: 20px;">Add Product Line</a>
             </div >
         </br><hr>
-    <script>
-            var storedValue = {{$supplier->id}};
-            localStorage.setItem("server", storedValue);
-
-        //     print(storedValue);       
-        //     console.log(storedValue);
-
-        </script>
-    
-     
-
  
     </div> 
     {{--  --}}
@@ -268,24 +344,26 @@
                 </div>
             </div>--}}
 
-
-              <tr>
+            @if($product_lines->product_line_name != null)
+             <tr>
                 <!-- <td>{{$product_lines->id}}</td> -->
                 <!-- <td><a href="/product_lines/{{$product_lines->id}}">{{$product_lines->product_line_name}}</a></td> -->
-                <td>{{$product_lines->product_line_name}}</td>
+                
+                 <td><a href="/product_lines/{{$product_lines->id}}/edit"> {{$product_lines->product_line_name}}</a></td>
                 <td>{{$product_lines->certificate}}</td>
                 <td>{{$product_lines->expiration_date}}</td>
                 <td>{{$product_lines->MFL_price}}</td>
                 <td>{{$product_lines->agritech_price}}</td>
                 
                 <!-- <td><a href="/product_lines/{{$product_lines->id}}/edit" class="btn btn-default">Edit</a></td> -->
-                <td>
+                <td style=" padding-bottom: 6px; padding-top: 6px; ">
                     {!!Form::open(['action' => ['product_linesController@destroy', $product_lines->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                         {{Form::hidden('_method', 'DELETE')}}
-                        {{Form::submit('Delete', ['class' => 'btn btn-danger hidden-print'])}}
+                        {{Form::submit('Delete', ['class' => 'btn btn-danger hidden-print', 'style' => 'padding-bottom: 0px; padding-top: 0px;'])}}
                     {!!Form::close()!!}
                 </td>
             </tr>
+            @endif
         @endforeach
         </table>
     @else

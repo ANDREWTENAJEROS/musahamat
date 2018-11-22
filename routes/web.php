@@ -28,6 +28,7 @@ Route::get('/services', 'PagesController@services');
 
 Route::resource('supplier', 'supplierController');
 Route::resource('product_lines', 'product_linesController');
+Route::resource('product_lines/create_fpa', 'product_lines@create_fpa');
 
 Auth::routes();
 Route::put('roduct_lines/create/{id}', 'UserController@update');

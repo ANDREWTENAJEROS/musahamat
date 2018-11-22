@@ -43,7 +43,7 @@
               <tr>
                 <!-- <td>{{$product_lines->id}}</td> -->
                 <!-- <td><a href="/product_lines/{{$product_lines->id}}">{{$product_lines->product_line_name}}</a></td> -->
-                <td>{{$product_lines->product_line_name}}</td>
+                <td><a href="supplier/{{$product_lines->supplier}}">{{$product_lines->product_line_name}}</a></td>
                 <td>{{$product_lines->certificate}}</td>
                 <td>{{$product_lines->expiration_date}}</td>
                 <td>{{$product_lines->MFL_price}}</td>

@@ -29,12 +29,21 @@ class product_linesController extends Controller
      */
     public function index()
     {   
-        session_start();     
+        
+        try {
+            session_start();     
         $_SESSION['bid'];
 
         // $product_lines = product_lines::orderBy('product_line_name','desc')->where('supplier','like','bid')->paginate(10);
         $product_lines = DB::table('product_lines')->where('supplier', '=', $_SESSION['bid'])->get();
         return view('product_lines.index')->with('product_lines', $product_lines);
+
+          }
+          catch (\Exception $e) {
+            $product_lines = DB::table('product_lines')->get();
+            return view('product_lines.index')->with('product_lines', $product_lines);
+            echo "empty"; 
+          }
     }
 
     public function search()
@@ -69,6 +78,24 @@ class product_linesController extends Controller
         // return view('product_lines.create');
     }
 
+    public function create_fpa(Request $request)
+    {
+
+        // $companies = transactions::lists('id');
+        // return View::make('admin.record_new', compact('companies'));
+    //     $product_lines = product_lines::lists('id', 'id');
+
+    // return view('product_lines.create', compact('id', 'id'));
+    // return view('product_lines.create', compact('companies'));
+        // $companies = supplier::lists('business_name');
+        // return view('product_lines.create', compact('companies'));
+         // this NEEDS TO BE AT THE TOP of the page before any output etc
+         session_start();
+        return view('product_lines.create_fpa');
+
+        // return view('product_lines.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -80,7 +107,6 @@ class product_linesController extends Controller
        
         $this->validate($request, [
             'supplier' => 'required',
-            'expiration_date' => 'required',
         ]);
         // Create product_lines
 
@@ -97,7 +123,7 @@ class product_linesController extends Controller
         $product_lines->expiration_date = $request->input('expiration_date');
         $product_lines->save();
         $url = 'supplier/'.$_SESSION['bid'];
-        return redirect($url)->with('success', 'product line created');
+        return redirect($url)->with('success', 'Certificate added');
 
         // $room = product_lines::find($product_lines->room_id);
         // $sdate = product_lines::find($start_date);

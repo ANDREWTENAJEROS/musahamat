@@ -118,7 +118,7 @@
         </br>
 
         <div class="row">
-             <div class="col-md-4  ">
+             <!-- <div class="col-md-4  ">
 
             {{Form::label('business_fpa_license', 'FPA license')}}</br>
             <label>
@@ -129,7 +129,7 @@
                 {{ Form::radio('business_fpa_license', 'not-compiled' , false) }} 
                 <span>not-compiled</span>
             </label>
-            </div>
+            </div> -->
             <div class="col-md-4  ">
                 {{Form::label('business_coa', 'Certificate of Analysis')}}</br>
                 <label>
