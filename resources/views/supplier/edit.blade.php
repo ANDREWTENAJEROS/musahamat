@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Edit {{$supplier->business_name}}</h1>
+<h2>Edit {{$supplier->business_name}}</h2>
     {!! Form::open(['action' => ['supplierController@update', $supplier->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
         <div class="form-group">
             {{Form::label('business_name', 'Supplier Name:')}}

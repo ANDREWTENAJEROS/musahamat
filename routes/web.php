@@ -14,7 +14,7 @@
 /*
 Route::get('/hello', function () {
     //return view('welcome');
-    return '<h1>Hello World</h1>';
+    return '<h2>Hello World</h2>';
 });
 
 Route::get('/users/{id}/{name}', function($id, $name){

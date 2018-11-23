@@ -66,3 +66,6 @@
 </br>
 </br>
 </div>
+<div class="visible-print">
+    <center> <img style="width:90%;" src="/HEADER.png"></center>
+</div>

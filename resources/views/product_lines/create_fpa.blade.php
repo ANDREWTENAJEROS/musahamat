@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1></h1>
+    <h2></h2>
     <a href="/supplier/{{$_SESSION['bid']}}"  class="btn btn-default hidden-print">Go Back</a>
 
     {!! Form::open(['action' => 'product_linesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}

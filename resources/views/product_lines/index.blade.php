@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Product lines</h1>
+    <h2>Product lines</h2>
     
 @if(count($product_lines) > 0)
 <table class="table table-striped">
@@ -9,35 +9,14 @@
                                 <th>Name</th>
                                 <th>certificate</th>
                                 <th>expiration date</th>
-                                <th>MFL Price</th>
+                                <th>MFI Price</th>
                                 <th>Agrotech Price</th>
                                 <th></th> 
                                 <th></th> 
 
                             </tr>
         @foreach($product_lines as $product_lines)
-           {{-- <div class="well">
-                <div class="row">
-                    <!-- <div class="col-md-4 col-sm-4">
-
-                    </div> -->
-                    <div class="col-md-2">
-                       Name: {{$product_lines->product_line_name}}
-                    </div>
-                    <div class="col-md-4">
-                    certificate: {{$product_lines->certificate}}
-                    </div>
-                    <div class="col-md-2">
-                    expiration date: {{$product_lines->expiration_date}}
-                    </div>
-                    <div class="col-md-2">
-                    MFL Price: {{$product_lines->MFL_price}}
-                    </div>
-                    <div class="col-md-2">
-                    Agrotech Price: {{$product_lines->agritech_price}}
-                    </div>
-                </div>
-            </div>--}}
+     
 
         @if($product_lines->product_line_name != null)
               <tr>
@@ -46,8 +25,8 @@
                 <td><a href="supplier/{{$product_lines->supplier}}">{{$product_lines->product_line_name}}</a></td>
                 <td>{{$product_lines->certificate}}</td>
                 <td>{{$product_lines->expiration_date}}</td>
-                <td>{{$product_lines->MFL_price}}</td>
-                <td>{{$product_lines->agritech_price}}</td>
+                <td>₱ {{$product_lines->MFL_price}}</td>
+                <td>₱ {{$product_lines->agritech_price}}</td>
                 
                 <td><a href="/product_lines/{{$product_lines->id}}/edit" class="btn btn-default">Edit</a></td>
                 <td>

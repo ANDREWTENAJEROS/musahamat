@@ -239,7 +239,7 @@
                                 <th>Name</th>
                                 <th>certificate</th>
                                 <th>expiration date</th>
-                                <th>MFL Price</th>
+                                <th>MFI Price</th>
                                 <th>Agrotech Price</th>
                                 <th></th> 
                                 
@@ -261,7 +261,7 @@
                     expiration date: {{$product_lines->expiration_date}}
                     </div>
                     <div class="col-md-2">
-                    MFL Price: {{$product_lines->MFL_price}}
+                    MFI Price: {{$product_lines->MFL_price}}
                     </div>
                     <div class="col-md-2">
                     Agrotech Price: {{$product_lines->agritech_price}}

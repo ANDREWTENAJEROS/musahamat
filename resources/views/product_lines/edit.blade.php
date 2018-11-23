@@ -31,7 +31,7 @@
                          {{Form::text('product_line_name', $product_lines->product_line_name, ['class' => 'form-control', 'placeholder' => ' '])}}
                         </div>
             <div class="col-md-4">
-                        {{Form::label('MFL_price', 'MFL Price:')}}
+                        {{Form::label('MFL_price', 'MFI Price:')}}
                         {{Form::number('MFL_price', $product_lines->MFL_price, ['class' => 'form-control', 'placeholder' => '₱'])}}
             </div>
             <div class="col-md-4">
