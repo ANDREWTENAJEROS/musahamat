@@ -171,7 +171,7 @@ class supplierController extends Controller
         $supplier->business_fax = $request->input('business_fax');
         $supplier->business_address = $request->input('business_address');
         $supplier->business_category = $request->input('business_category');
-        // $supplier->business_info1 = $request->input('business_info1');
+        $supplier->business_info1 = $request->input('business_info1');
         // $supplier->business_info2 = $request->input('business_info2');
         // $supplier->business_info3 = $request->input('business_info3');
         $supplier->business_assessment_accreditation = $request->input('business_assessment_accreditation');

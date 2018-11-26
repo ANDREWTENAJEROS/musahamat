@@ -15,6 +15,7 @@
         <tr>
             <td><a href="/supplier/" class="btn btn-default">View all suppliers </a></td>
             <td><a href="/product_lines/" class="btn btn-default">View all Product lines </a></td>
+            <td><a href="/withdrawals/" class="btn btn-default">View all Box and Crates withdrawals </a></td>
 
         </tr>
         </table>

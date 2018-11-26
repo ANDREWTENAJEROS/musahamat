@@ -27,7 +27,7 @@
                 <td>{{$product_lines->expiration_date}}</td>
                 <td>₱ {{$product_lines->MFL_price}}</td>
                 <td>₱ {{$product_lines->agritech_price}}</td>
-                
+                @if (!Auth::guest())
                 <td><a href="/product_lines/{{$product_lines->id}}/edit" class="btn btn-default">Edit</a></td>
                 <td>
                     {!!Form::open(['action' => ['product_linesController@destroy', $product_lines->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
@@ -35,6 +35,7 @@
                         {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}
                     {!!Form::close()!!}
                 </td>
+                @endif
             </tr>
             @endif
         @endforeach

@@ -170,7 +170,7 @@ class product_linesController extends Controller
 
         // Create product_lines
         $product_lines = product_lines::find($id);
-        $product_lines->supplier =$request->input('supplier');
+        $product_lines->supplier =$product_lines->supplier;
         $product_lines->product_line_name = $request->input('product_line_name');
         $product_lines->MFL_price = $request->input('MFL_price');
         $product_lines->agritech_price = $request->input('agritech_price');

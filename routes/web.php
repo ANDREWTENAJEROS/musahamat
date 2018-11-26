@@ -28,6 +28,9 @@ Route::get('/services', 'PagesController@services');
 
 Route::resource('supplier', 'supplierController');
 Route::resource('product_lines', 'product_linesController');
+Route::resource('withdrawals', 'withdrawalsController');
+
+
 Route::resource('product_lines/create_fpa', 'product_lines@create_fpa');
 
 Auth::routes();

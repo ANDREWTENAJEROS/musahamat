@@ -35,7 +35,7 @@
             <td><h5 style="    padding-right: 30px; padding-left: 20px;">{{$supplier->business_category}}</h5></td>
         </tr>
         <tr>
-            <td>telephone number: </td>
+            <td>Telephone number: </td>
             <td><h5 style="    padding-right: 30px; padding-left: 20px;">{{$supplier->business_tel}}</h5></td>
             <td>Fax number: </td>
             <td><h5 style="    padding-right: 30px; padding-left: 20px;">{{$supplier->business_fax}}</h5></td>
@@ -154,7 +154,7 @@
                                 
                                 <th>Name</th>
                                 <th></th>
-                                <th>expiration date</th>
+                                <th>Expiration date</th>
                                 <th></th> 
                                 
 
@@ -203,12 +203,14 @@
                 <td>{{$product_lines->expiration_date}}</td>
         
                 <!-- <td><a href="/product_lines/{{$product_lines->id}}/edit" class="btn btn-default">Edit</a></td> -->
+                @if (!Auth::guest())
                 <td style=" padding-bottom: 6px; padding-top: 6px; ">
                     {!!Form::open(['action' => ['product_linesController@destroy', $product_lines->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                         {{Form::hidden('_method', 'DELETE')}}
                         {{Form::submit('Delete', ['class' => 'btn btn-danger hidden-print' , 'style' => 'padding-bottom: 0px; padding-top: 0px;'])}}
                     {!!Form::close()!!}
                 </td>
+                @endif
             </tr>
             @endif
         @endforeach
@@ -236,8 +238,8 @@
 <table class="table table-striped">
                             <tr>
                                 <th>Name</th>
-                                <th>certificate</th>
-                                <th>expiration date</th>
+                                <th>Certificate</th>
+                                <th>Expiration date</th>
                                 <th>MFI Price</th>
                                 <th>Agrotech Price</th>
                                 <th></th> 
@@ -259,12 +261,14 @@
                 <td>₱ {{$product_lines->agritech_price}}</td>
                 
                 <!-- <td><a href="/product_lines/{{$product_lines->id}}/edit" class="btn btn-default">Edit</a></td> -->
+                @if (!Auth::guest())
                 <td style=" padding-bottom: 6px; padding-top: 6px; ">
                     {!!Form::open(['action' => ['product_linesController@destroy', $product_lines->id], 'method' => 'POST', 'class' => 'pull-right'])!!}
                         {{Form::hidden('_method', 'DELETE')}}
                         {{Form::submit('Delete', ['class' => 'btn btn-danger hidden-print', 'style' => 'padding-bottom: 0px; padding-top: 0px;'])}}
                     {!!Form::close()!!}
                 </td>
+                @endif
             </tr>
             @endif
         @endforeach
@@ -418,7 +422,7 @@
                             
                             <th><h6 style="margin-top: 0px; margin-bottom: 0px;">Name</h6></th>
                             <th></th>
-                            <th><h6 style="margin-top: 0px; margin-bottom: 0px;">expiration date</h6></th>
+                            <th><h6 style="margin-top: 0px; margin-bottom: 0px;">Expiration date</h6></th>
                             <th></th> 
                             
 
@@ -475,7 +479,9 @@
 @endif
 <hr>
 <div class="pagebreak"> </div>
-
+<div class="visible-print">
+    <center> <img style="width:90%;" src="/HEADER.png"></center>
+</div>
 <div class="row">
 <div class="col-md-6">
     <h5>Product Lines</h5>
@@ -489,8 +495,8 @@
 <table class="table table-striped">
                         <tr>
                             <th ><h6 style="margin-top: 0px; margin-bottom: 0px;">Name</h6></th>
-                            <th ><h6 style="margin-top: 0px; margin-bottom: 0px;">certificate</h6></th>
-                            <th ><h6 style="margin-top: 0px; margin-bottom: 0px;">expiration date</h6></th>
+                            <th ><h6 style="margin-top: 0px; margin-bottom: 0px;">Certificate</h6></th>
+                            <th ><h6 style="margin-top: 0px; margin-bottom: 0px;">Expiration date</h6></th>
                             <th ><h6 style="margin-top: 0px; margin-bottom: 0px;">MFI Price</h6></th>
                             <th ><h6 style="margin-top: 0px; margin-bottom: 0px;">Agrotech Price</h6></th>
                             <th></th> 

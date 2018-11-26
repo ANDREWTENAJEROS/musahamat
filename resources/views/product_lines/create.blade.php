@@ -31,7 +31,7 @@
 
         <hr>
         <div class="row">
-        <h4>Product Line</h4>
+        <h4>For Product Line</h4>
             <div class="col-md-4">
                          {{Form::label('product_line_name', 'Product line name:')}}
                         {{Form::text('product_line_name', '', ['class' => 'form-control', 'placeholder' => ' '])}}

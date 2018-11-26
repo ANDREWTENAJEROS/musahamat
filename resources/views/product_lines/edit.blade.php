@@ -3,10 +3,9 @@
 @section('content')
     
     <a href="/supplier/{{$product_lines->supplier}}"  class="btn btn-default hidden-print">Go Back</a>
-<h2>Edit certificate</h2>
+<h2>Edit Document</h2>
     {!! Form::open(['action' => ['product_linesController@update', $product_lines->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
     
-
         <div class="">
             
                 </div>
@@ -25,7 +24,7 @@
 
         <hr>
         <div class="row">
-        <h4>Product Line</h4>
+        <h4>For Product Line</h4>
             <div class="col-md-4">
                          {{Form::label('product_line_name', 'Product line name:')}}
                          {{Form::text('product_line_name', $product_lines->product_line_name, ['class' => 'form-control', 'placeholder' => ' '])}}
@@ -39,8 +38,10 @@
                         {{Form::number('agritech_price', $product_lines->agritech_price, ['class' => 'form-control', 'placeholder' => '₱'])}}
             </div>
         </div>
-</br>
+        <div style="visibility:hidden;">
+    {{Form::text('supplier id', $product_lines->supplier, ['class' => 'form-control', 'placeholder' => ''])}}
+    </div>
         {{Form::hidden('_method','PUT')}}
-        {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
+        {{Form::submit('Submit', ['class'=>'btn btn-primary pull-right'])}}
     {!! Form::close() !!}
 @endsection
