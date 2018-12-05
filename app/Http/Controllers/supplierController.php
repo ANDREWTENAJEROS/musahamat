@@ -29,7 +29,7 @@ class supplierController extends Controller
     public function index()
     {
         // $supplier = supplier::all();
-                $supplier = supplier::orderBy('business_name','desc')->paginate(10);
+                $supplier = supplier::orderBy('business_name','asc')->paginate(15);
 
         return view('supplier.index')->with('supplier',$supplier);
     }
@@ -91,7 +91,7 @@ class supplierController extends Controller
         $supplier->business_address = $request->input('business_address');
         $supplier->business_category = $request->input('business_category');
         $supplier->business_info1 = $request->input('business_info1');
-        // $supplier->business_info2 = $request->input('business_info2');
+        $supplier->business_info2 = $request->input('business_info2');
         // $supplier->business_info3 = $request->input('business_info3');
         $supplier->business_assessment_accreditation = $request->input('business_assessment_accreditation');
         $supplier->business_company_profile = $request->input('business_company_profile');
@@ -172,7 +172,7 @@ class supplierController extends Controller
         $supplier->business_address = $request->input('business_address');
         $supplier->business_category = $request->input('business_category');
         $supplier->business_info1 = $request->input('business_info1');
-        // $supplier->business_info2 = $request->input('business_info2');
+        $supplier->business_info2 = $request->input('business_info2');
         // $supplier->business_info3 = $request->input('business_info3');
         $supplier->business_assessment_accreditation = $request->input('business_assessment_accreditation');
         $supplier->business_company_profile = $request->input('business_company_profile');
@@ -204,9 +204,15 @@ class supplierController extends Controller
         // if(auth()->user()->id !==$supplier->user_id){
         //     return redirect('/supplier')->with('error', 'Unauthorized Page');
         // }
+        $product_lines = DB::table('product_lines')->where('supplier', '=', $supplier->id)->get();                
+
+        if(count($product_lines) > 0){
+            return redirect('/supplier')->with('error', 'Remove all Documents and Certificate first');
+        }else{
+            $supplier->delete();
+        return redirect('/supplier')->with('success', 'Supplier Removed');
+        }
 
         
-        $supplier->delete();
-        return redirect('/supplier')->with('success', 'Supplier Removed');
     }
 }

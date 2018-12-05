@@ -25,12 +25,23 @@ class withdrawalsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         // $withdrawals = withdrawals::all();
-                $withdrawals = withdrawals::orderBy('date_to_withdraw','desc')->paginate(10);
+        //         $withdrawals = withdrawals::orderBy('date_to_withdraw','desc')->paginate(15);
 
-        return view('withdrawals.index')->with('withdrawals',$withdrawals);
+        // return view('withdrawals.index')->with('withdrawals',$withdrawals);
+
+
+        // searching
+        $search_value = $request->input('search_value');
+        $withdrawals = withdrawals::latest()
+                ->search($search_value)
+                ->paginate(15);
+
+        return view('withdrawals.index', compact('withdrawals'))->with('withdrawals', $withdrawals);
+        // return view('posts.index', compact('posts'))->with('posts', $posts)->with('users', $users);
+
     }
 
     /**
@@ -48,6 +59,18 @@ class withdrawalsController extends Controller
     // return view('withdrawals.create', compact('companies'));
 
         return view('withdrawals.create');
+    }
+
+    public function create1()
+    {
+
+        // return View::make('admin.record_new', compact('companies'));
+    //     $withdrawals = withdrawals::lists('id', 'id');
+
+    // return view('withdrawals.create', compact('id', 'id'));
+    // return view('withdrawals.create', compact('companies'));
+
+        return view('withdrawals.create1');
     }
 
     /**
@@ -93,6 +116,9 @@ class withdrawalsController extends Controller
         $withdrawals->qty1 = $request->input('qty1');
         $withdrawals->qty2 = $request->input('qty2');
         $withdrawals->qty3 = $request->input('qty3');
+        $withdrawals->info1 = $request->input('info1');
+        $withdrawals->info2 = $request->input('info2');
+
         
 
         $withdrawals->save();
@@ -170,6 +196,9 @@ class withdrawalsController extends Controller
         $withdrawals->qty1 = $request->input('qty1');
         $withdrawals->qty2 = $request->input('qty2');
         $withdrawals->qty3 = $request->input('qty3');
+        $withdrawals->info1 = $request->input('info1');
+        $withdrawals->info2 = $request->input('info2');
+
         
         $withdrawals->save();
         return redirect('/withdrawals')->with('success', 'withdrawals Updated');

@@ -33,9 +33,9 @@ class product_linesController extends Controller
         try {
             session_start();     
         $_SESSION['bid'];
-
+        $supplier = DB::table('supplier')->where('id', '=', $product_lines->supplier)->get();
         // $product_lines = product_lines::orderBy('product_line_name','desc')->where('supplier','like','bid')->paginate(10);
-        $product_lines = DB::table('product_lines')->where('supplier', '=', $_SESSION['bid'])->get();
+        $product_lines = DB::table('product_lines')->orderBy('product_line_name')->where('supplier', '=', $_SESSION['bid'])->get();
         return view('product_lines.index')->with('product_lines', $product_lines);
 
           }
@@ -77,8 +77,7 @@ class product_linesController extends Controller
 
         // return view('product_lines.create');
     }
-
-    public function create_fpa(Request $request)
+    public function create1(Request $request)
     {
 
         // $companies = transactions::lists('id');
@@ -91,10 +90,11 @@ class product_linesController extends Controller
         // return view('product_lines.create', compact('companies'));
          // this NEEDS TO BE AT THE TOP of the page before any output etc
          session_start();
-        return view('product_lines.create_fpa');
+        return view('product_lines.create1');
 
         // return view('product_lines.create');
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -138,8 +138,15 @@ class product_linesController extends Controller
      */
     public function show($id)
     {
-        $product_lines = product_lines::find($_SESSION['bid']);
+        try{
+             $product_lines = product_lines::find($_SESSION['bid']);
         return view('product_lines.show')->with('product_lines', $product_lines);
+        }catch (\Exception $e) {
+
+        $product_lines = product_lines::find($id);
+        return view('product_lines.show')->with('product_lines', $product_lines);
+        }
+
     }
 
     /**

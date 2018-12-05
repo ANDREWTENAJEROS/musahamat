@@ -12,16 +12,19 @@
            
             <h4>Recipient</h4>
            <table class="table table-striped">
-            <tr>
+           <tr>
             <td>
             {{Form::label('company', 'Comapny name')}}
             {{Form::text('company', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
             </td>
             <td>
+            {{Form::label('company', 'Recipient Person')}}
+            {{Form::text('info2', '', ['class' => 'form-control' ,'placeholder' => ' '])}}
+            </td>
+            <td>
             {{Form::label('company', 'Boxplant')}}
             {{Form::text('info1', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
             </td>
-           
             
             </tr>
             
@@ -62,8 +65,9 @@
             {{Form::date('date_to_withdraw', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
              </td>
             <td>
-            {{Form::label('po_reference', 'P.O. Reference')}}
-            {{Form::text('po_reference', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+            <?php   $AC = $users = DB::table('withdrawals')->where('kg3',null)->count(); ?>
+            {{Form::label('po_reference', 'Withdrawal No.')}}
+            {{Form::text('po_reference', $AC, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ''])}}
 
             </td>
             <td>
@@ -77,47 +81,36 @@
             <h4>Item description</h4>
            <table class="table table-striped">
             <tr>
-            <td>
-            {{Form::label('kg1', 'Weight per item')}}
-            {{Form::text('kg1', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
-            </td>
+           
             <td>
             {{Form::label('item1', 'Item')}}
-            {{Form::text('item1', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => 'Cover'])}}
+            {{Form::text('item1', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => 'ANACO CRATES'])}}
             </td>
             <td>
             {{Form::label('qty1', 'Quantity per item ')}}
             {{Form::text('qty1', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => 'PCS'])}}
             </td>
+            <td>
+            {{Form::label('kg1', 'No. of Pallets')}}
+            {{Form::text('kg1', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+            </td>
             </tr>
             <tr>
-            <td>
-            {{Form::label('kg2', 'Weight per item')}}
-            {{Form::text('kg2', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ''])}}
-            </td>
+           
             <td>
             {{Form::label('item2', 'Item')}}
-            {{Form::text('item2', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => 'Body'])}}
+            {{Form::text('item2', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => 'PALLETS'])}}
             </td>
             <td>
-            {{Form::label('qty1', 'Quantity per item ')}}
+            {{Form::label('qty2', 'Quantity per item ')}}
             {{Form::text('qty2', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => 'PCS'])}}
             </td>
-            </tr>
-            <tr>
-            <td>
-            {{Form::label('kg1', 'Weight per item')}}
-            {{Form::text('kg3', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
-            </td>
-            <td>
-            {{Form::label('item1', 'Item')}}
-            {{Form::text('item3', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => 'Pads'])}}
-            </td>
-            <td>
-            {{Form::label('qty1', 'Quantity per item ')}}
-            {{Form::text('qty3', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => 'PCS'])}}
+             <td>
+            {{Form::label('kg2', 'No. of Pallets')}}
+            {{Form::text('kg2', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ''])}}
             </td>
             </tr>
+            
             </table>
            <hr>
         

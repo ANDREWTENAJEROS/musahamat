@@ -1,157 +1,157 @@
 @extends('layouts.app')
 
 @section('content')
-<h2>Edit {{$supplier->business_name}}</h2>
-    {!! Form::open(['action' => ['supplierController@update', $supplier->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-        <div class="form-group">
-            {{Form::label('business_name', 'Supplier Name:')}}
-            {{Form::text('business_name', $supplier->business_name, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+<h2>Edit ATW</h2>
+    {!! Form::open(['action' => ['withdrawalsController@update', $withdrawals->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+    <div class="form-group">
 
-            <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    {{Form::label('business_address', 'Business Address:')}}
-                    {{Form::text('business_address', $supplier->business_address, ['class' => 'form-control', 'required' => 'required', 'placeholder' => ' '])}}
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    {{Form::label('business_email Name', 'Email Address:')}}
-                    {{Form::email('business_email', $supplier->business_email, ['class' => 'form-control', 'placeholder' => ' '])}}
-             </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-4">
-
-                {{Form::label('business_tel', 'tel number:')}}
-                {{Form::tel('business_tel', $supplier->business_tel, ['class' => 'form-control', 'placeholder' => ' '])}}
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                {{Form::label('business_fax', 'fax number:')}}
-                {{Form::tel('business_fax', $supplier->business_fax, ['class' => 'form-control', 'placeholder' => ' '])}}
-                </div>
-
-                <div class="col-md-4 col-sm-4">
-                 {{Form::label('category', 'Category:')}}
-                 {{Form::text('business_category', $supplier->business_category, ['class' => 'form-control', 'required' => 'required', 'placeholder' => ' '])}}
-            </div>
-
-                
-           </div>
-           <div class="row">
-                <div class="col-md-3 col-sm-3">
-                {{Form::label('business_capitalization', 'Capitalization:')}}
-                {{Form::text('business_capitalization', $supplier->business_capitalization, ['class' => 'form-control', 'placeholder' => ' '])}}
-                </div>
         
-                <div class="col-md-3 col-sm-3">
-                {{Form::label('business_nature', 'Business Nature:')}}
-                {{Form::text('business_nature', $supplier->business_nature, ['class' => 'form-control',  'placeholder' => ' '])}}
-                </div>
+            
+           
+<h4>Recipient</h4>
+<table class="table table-striped">
+<tr>
+            <td>
+            {{Form::label('company', 'Comapny name')}}
+            {{Form::text('company', $withdrawals->company, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+            </td>
+            <td>
+            {{Form::label('company', 'Recipient Person')}}
+            {{Form::text('info2', $withdrawals->info2, ['class' => 'form-control' ,'placeholder' => ' '])}}
+            </td>
+            <td>
+            {{Form::label('company', 'Boxplant')}}
+            {{Form::text('info1', $withdrawals->info1, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+            </td>
+            
+            </tr>
+            
+            <tr>
+            <td>
+            {{Form::label('address', 'Address')}}
+            {{Form::text('address', $withdrawals->address, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+            </td>
+            <td>
+            {{Form::label('date', 'Document Date')}}
+            {{Form::date('date', $withdrawals->date, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+             </td>
+             <td></td>
+             <td></td>
+            </tr>
+</table>
+<h4>Musahamat Trucking</h4>
+<table class="table table-striped">
+<tr>
+<td>
+{{Form::label('driver', 'Authorize Driver\'s Name')}}
+{{Form::text('driver', $withdrawals->driver, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+</td>
+<td>
+{{Form::label('plate_no', 'Truck Plate No.')}}
+{{Form::text('plate_no', $withdrawals->plate_no, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+</td>
 
-                <div class="col-md-3 col-sm-3">
-                {{Form::label('business_type_id', 'Business Type:')}}
-                {{Form::text('business_type_id', $supplier->business_type_id, ['class' => 'form-control', 'required' => 'required', 'placeholder' => ' '])}}
-                </div>
+</tr>
+</table>
 
-                <div class="col-md-3 col-sm-3">
-                {{Form::label('business_year_established', 'Year Established:')}}
-                {{Form::number('business_year_established', $supplier->business_year_established, ['class' => 'form-control',  'placeholder' => ' '])}}
-                </div>
+<h4>Withdrawal details</h4>
+<table class="table table-striped">
+<tr>
+<td>
+{{Form::label('date_to_withdraw', 'Date to Withdraw')}}
+{{Form::date('date_to_withdraw', $withdrawals->date_to_withdraw, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+ </td>
+<td>
+{{Form::label('po_reference', 'P.O. Reference')}}
+{{Form::text('po_reference', $withdrawals->po_reference, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
 
+</td>
+<td>
+{{Form::label('destination', 'Destination')}}
+{{Form::text('destination', $withdrawals->destination, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+ </td>
+</tr>
+</table>
 
+<hr>
+<h4>Item description</h4>
+<table class="table table-striped">
+<tr>
+<td>
+@if($withdrawals->qty3==null)
+{{Form::label('kg1', 'No. of Pallets')}}
+@else
+{{Form::label('kg1', 'Weight per item')}}
+@endif
+{{Form::text('kg1', $withdrawals->kg1, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+</td>
+<td>
+{{Form::label('item1', 'Item')}}
+{{Form::text('item1', $withdrawals->item1, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => 'Cover'])}}
+</td>
+<td>
+{{Form::label('qty1', 'Quantity per item ')}}
+{{Form::text('qty1', $withdrawals->qty1, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => 'PCS'])}}
+</td>
+</tr>
+<tr>
+<td>
+@if($withdrawals->qty3==null)
+{{Form::label('kg1', 'No. of Pallets')}}
+@else
+{{Form::label('kg1', 'Weight per item')}}
+@endif
+{{Form::text('kg2', $withdrawals->kg2, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ''])}}
+</td>
+<td>
+{{Form::label('item2', 'Item')}}
+{{Form::text('item2', $withdrawals->item2, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => 'Body'])}}
+</td>
+<td>
+{{Form::label('qty1', 'Quantity per item ')}}
+{{Form::text('qty2', $withdrawals->qty2, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => 'PCS'])}}
+</td>
+</tr>
+@if($withdrawals->qty3!=null)
+<tr>
+<td>
 
-           </div>
-           <hr>
-           <div class="row">
-                <div class="col-md-6 col-sm-6">
-                    {{Form::label('business_credit_terms', 'Credit Terms:')}}
-                    {{Form::number('business_credit_terms', $supplier->business_credit_terms, ['class' => 'form-control', 'required' => 'required', 'placeholder' => '₱'])}}
-                </div>
-                <div class="col-md-6 col-sm-6">
-                    {{Form::label('business_credit_limit', 'Credit Limit:')}}
-                    {{Form::number('business_credit_limit', $supplier->business_credit_limit, ['class' => 'form-control', 'required' => 'required', 'placeholder' => '₱'])}}
-                 </div> 
-           </div>
-           <hr>
-       
-         <div class="row">  
-                            <div class="col-md-2 col-sm-2">
+{{Form::label('kg1', 'Weight per item')}}
+{{Form::text('kg3', $withdrawals->kg3, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+</td>
+<td>
+{{Form::label('item1', 'Item')}}
+{{Form::text('item3', $withdrawals->item3, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => 'Pads'])}}
+</td>
+<td>
+{{Form::label('qty1', 'Quantity per item ')}}
+{{Form::text('qty3', $withdrawals->qty3 ,['class' => 'form-control', 'required' => 'required' ,'placeholder' => 'PCS'])}}
+</td>
+</tr>
+@endif
+</table>
+<hr>
 
-             {{Form::label('business_assessment_accreditation', 'Assessment and Accreditation From')}}</br>
-                <label>
-                    {{ Form::radio('business_assessment_accreditation', 'complied' , false ,[ 'required' => 'required']) }}
-                    <span>complied</span>
-                </label>
-                <label>
-                    {{ Form::radio('business_assessment_accreditation', 'not-complied' , false) }} 
-                    <span>not-complied</span>
-                </label>
-            </div>
+<h3>Status</h3>
+<table class="table table-striped">
 
-                                    <div class="col-md-2 col-sm-2">
+<tr>
+<td>
+{{Form::label('status', 'Status')}}
+{{Form::text('status', $withdrawals->status, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+</td>
+<td>
+{{Form::label('actual_withdraw_date	', 'Actual Withdraw Date	')}}
+{{Form::date('actual_withdraw_date	', $withdrawals->actual_withdraw_date, ['class' => 'form-control' ,'placeholder' => ' '])}}
 
-             {{Form::label('business_company_profile', 'Company Profile')}}</br>
-                <label>
-                    {{ Form::radio('business_company_profile', 'complied' , false,[ 'required' => 'required']) }}
-                    <span>complied</span>
-                </label>
-                <label>
-                    {{ Form::radio('business_company_profile', 'not-complied' , false) }} 
-                    <span>not-complied</span>
-                </label>
-            </div>
+</td>
+</tr>
+</table>
 
-                                    <div class="col-md-2 col-sm-2">
-
-             {{Form::label('business_permit', 'Business Permit')}}</br>
-                <label>
-                    {{ Form::radio('business_permit', 'complied' , false,[ 'required' => 'required']) }}
-                    <span>complied</span>
-                </label>
-                <label>
-                    {{ Form::radio('business_permit', 'not-complied' , false) }} 
-                    <span>not-complied</span>
-                </label>
-            </div>
-            <div class="col-md-2 col-sm-2">
-
-             {{Form::label('business_fpa_license', 'FPA license')}}</br>
-                <label>
-                    {{ Form::radio('business_fpa_license', 'complied' , false,[ 'required' => 'required']) }}
-                    <span>complied</span>
-                </label>
-                <label>
-                    {{ Form::radio('business_fpa_license', 'not-complied' , false) }} 
-                    <span>not-complied</span>
-                </label>
-            </div>
-            <div class="col-md-2 col-sm-2">
-
-             {{Form::label('business_coa', 'Certificate of Analysis')}}</br>
-                <label>
-                    {{ Form::radio('business_coa', 'complied' , false,[ 'required' => 'required']) }}
-                    <span>complied</span>
-                </label>
-                <label>
-                    {{ Form::radio('business_coa', 'not-complied' , false) }} 
-                    <span>not-complied</span>
-                </label>
-            </div>
-            <div class="row">
-            <div class="col-md-2  ">
-            {{Form::label('business_info1', 'Certificate of Registration')}}</br>
-            <label>
-                {{ Form::radio('business_info1', 'complied' , false,[ 'required' => 'required']) }}
-                <span>complied</span>
-            </label>
-            <label>
-                {{ Form::radio('business_info1', 'not-complied' , false) }} 
-                <span>not-complied</span>
-            </label>
-            </div>
-            </div >
-
-            </div >
+</div >
         {{Form::hidden('_method','PUT')}}
-        {{Form::submit('Submit', ['class'=>'btn btn-primary'])}}
+        {{Form::submit('Submit', ['class'=>'btn btn-primary pull-right'])}}
     {!! Form::close() !!}
+    </br>
+    </br></br>
 @endsection

@@ -26,6 +26,12 @@
             
             
         </tr>
+        <tr>
+            <td>TIN: </td>
+            <td><h5 style="    padding-right: 30px; padding-left: 20px;">{{$supplier->business_info2}}</h5></td>
+            
+            
+        </tr>
 </table>
         <table>
         <tr>
@@ -143,14 +149,17 @@
         <tr>
         <th><h4>Documents</h4></th>
         
-        <th><a onclick="" href="{{ route('product_lines.create', $supplier->id) }}" class="hidden-print btn btn-default pull-right" style="margin-right: 20px;">Add document</a>
+        <!-- <th><a onclick="" href="{{ route('product_lines.create', $supplier->id) }}" class="hidden-print btn btn-default pull-right" style="margin-right: 20px;">Add document</a> -->
+        <th><a onclick="" href="/product_lines/create1" class="hidden-print btn btn-default pull-right" style="margin-right: 20px;">Add document</a>
+
     </th>
         <tr>
 </table>
     @endif
-@if(count($product_lines) > 0 )
+    
+    
 <table class="table table-striped">
-                            <tr>
+                            <tr style="   ">
                                 
                                 <th>Name</th>
                                 <th></th>
@@ -194,6 +203,7 @@
                 <td></td>
 
             </tr>
+            @if(count($product_lines) > 0 )
         @foreach($product_lines as $product_lines)
             @if($product_lines->product_line_name == null)
             <tr>
@@ -216,7 +226,7 @@
         @endforeach
         </table>
     @else
-        <p>No product lines found</p>
+        <p></p>
     @endif
 <hr>
 <div class="pagebreak"> </div>
@@ -274,7 +284,7 @@
         @endforeach
         </table>
     @else
-        <p>No product lines found</p>
+        <p></p>
     @endif
     
 <hr>
@@ -475,7 +485,7 @@
     @endforeach
     </table>
 @else
-    <p>No product lines found</p>
+    <p></p>
 @endif
 <hr>
 <div class="pagebreak"> </div>
@@ -516,7 +526,7 @@
     @endforeach
     </table>
 @else
-    <p>No product lines found</p>
+    <p></p>
 @endif
 
 <hr>

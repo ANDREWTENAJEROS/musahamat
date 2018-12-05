@@ -6,7 +6,8 @@
         <img style="width:50%" src="/mlogo.png">
         
         @if(Auth::guest())
-        <p><a class="btn btn-primary btn-lg" href="/login" role="button">Login</a> <a class="btn btn-success btn-lg" href="/register" role="button">Register</a></p>
+        <p><a class="btn btn-primary btn-lg" href="/login" role="button">Login</a> 
+        <!-- <a class="btn btn-success btn-lg" href="/register" role="button">Register</a></p> -->
         @else
         <table class="table table-striped">
         <tr>

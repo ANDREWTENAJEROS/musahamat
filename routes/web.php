@@ -25,13 +25,12 @@ Route::get('/users/{id}/{name}', function($id, $name){
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
+Route::get('/withdrawals/create1', 'withdrawalsController@create1');
+Route::get('/product_lines/create1', 'product_linesController@create1');
 
 Route::resource('supplier', 'supplierController');
 Route::resource('product_lines', 'product_linesController');
 Route::resource('withdrawals', 'withdrawalsController');
-
-
-Route::resource('product_lines/create_fpa', 'product_lines@create_fpa');
 
 Auth::routes();
 Route::put('roduct_lines/create/{id}', 'UserController@update');

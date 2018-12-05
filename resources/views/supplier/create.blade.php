@@ -8,24 +8,28 @@
             {{Form::text('business_name', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
 
             <div class="row">
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-4 col-sm-4">
                     {{Form::label('business_address', 'Business Address:')}}
                     {{Form::text('business_address', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => ' '])}}
                 </div>
-                <div class="col-md-6 col-sm-6">
+                <div class="col-md-4 col-sm-4">
                     {{Form::label('business_email Name', 'Email Address:')}}
                     {{Form::email('business_email', '', ['class' => 'form-control', 'placeholder' => ' '])}}
+             </div>
+             <div class="col-md-4 col-sm-4">
+                    {{Form::label('business_info2', 'TIN:')}}
+                    {{Form::text('business_info2', '', ['class' => 'form-control', 'placeholder' => ' '])}}
              </div>
             </div>
             <div class="row">
                 <div class="col-md-4 col-sm-4">
 
-                {{Form::label('business_tel', 'tel number:')}}
+                {{Form::label('business_tel', 'Tel number:')}}
                 {{Form::tel('business_tel', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => ' '])}}
                 </div>
 
                 <div class="col-md-4 col-sm-4">
-                {{Form::label('business_fax', 'fax number:')}}
+                {{Form::label('business_fax', 'Fax number:')}}
                 {{Form::tel('business_fax', '', ['class' => 'form-control', 'required' => 'required', 'placeholder' => ' '])}}
                 </div>
 

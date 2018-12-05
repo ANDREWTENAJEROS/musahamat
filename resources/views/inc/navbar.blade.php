@@ -25,9 +25,15 @@
             <ul class="nav navbar-nav">
               <li><a href="/supplier">Suppliers</a></li>
               <li><a href="/product_lines">Product Lines</a></li>
-              <li><a href="/supplier/create ">New Supplier</a></li>
+              <li><a href="/withdrawals/ ">Crates & Boxes</a></li>
               
+                <li>
+<!--                 
+                {--!! Form::open(['action' => 'lightingController@toggle', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!--}
+                {{--Form::submit('toggle ligts', ['class'=>'btn btn-primary pull-right'])--}} -->
 
+                
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
@@ -35,7 +41,7 @@
                 <!-- Authentication Links -->
                 @if (Auth::guest())
                     <li><a href="{{ route('login') }}">Login</a></li>
-                    <li><a href="{{ route('register') }}">Register</a></li>
+                    <!-- <li><a href="{{ route('register') }}">Register</a></li> -->
                 @else
                 <li>  <a>{{ Auth::user()->name }}</a>
                 </li>
@@ -77,5 +83,6 @@
 </br>
 </div>
 <div class="visible-print">
-    <center> <img style="width:90%;" src="/HEADER.png"></center>
+    <center> <img style="width:70%;" src="/HEADER.png"></center>
 </div>
+
