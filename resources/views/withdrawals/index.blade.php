@@ -12,7 +12,7 @@
     </div> 
 <div class="col-md-2">
     <form action="{{route('withdrawals.index')}}" method="GET" role="search">
-        {{-- {!! Form::open(['action' => 'withdrawalsController@search', 'method' => 'POST', 'role' => 'search'])!!} --}}
+         <!-- {-- Form::open(['action' => 'withdrawalsController@search', 'method' => 'POST', 'role' => 'search'])--}  -->
         {{csrf_field()}}
         
     

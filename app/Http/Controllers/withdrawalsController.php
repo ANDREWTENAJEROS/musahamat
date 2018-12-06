@@ -28,22 +28,25 @@ class withdrawalsController extends Controller
     public function index(Request $request)
     {
         // $withdrawals = withdrawals::all();
-        //         $withdrawals = withdrawals::orderBy('date_to_withdraw','desc')->paginate(15);
+                $withdrawals = withdrawals::orderBy('date_to_withdraw','desc')->paginate(15);
 
         // return view('withdrawals.index')->with('withdrawals',$withdrawals);
 
 
         // searching
         $search_value = $request->input('search_value');
-        $withdrawals = withdrawals::latest()
-                ->search($search_value)
-                ->paginate(15);
+        // $withdrawals = withdrawals::latest()->paginate(15);
+                // ->search($search_value)
+                // ->paginate(15);
 
         return view('withdrawals.index', compact('withdrawals'))->with('withdrawals', $withdrawals);
         // return view('posts.index', compact('posts'))->with('posts', $posts)->with('users', $users);
 
     }
 
+    public function search(){
+        return view('withdrawals.search');
+    }
     /**
      * Show the form for creating a new resource.
      *
