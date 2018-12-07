@@ -7,7 +7,7 @@
     {!! Form::open(['action' => 'withdrawalsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
         <div class="form-group">
 
-        
+
             
            
             <h4>Recipient</h4>
@@ -34,7 +34,10 @@
             {{Form::label('date', 'Document Date')}}
             {{Form::date('date', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
              </td>
-             <td></td>
+             <td>
+             {{Form::label('date', 'Week number')}}
+            {{Form::number('week', $dayOfWeek = date("W"), ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+             </td>
              <td></td>
             </tr>
             

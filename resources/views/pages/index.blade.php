@@ -3,7 +3,7 @@
 @section('content')
     <div class="jumbotron text-center">
         <!-- <h2>Musahamat Suppliers Profile</h2> -->
-        <img style="width:50%" src="/mlogo.png">
+        <img style="width:50%" class="hidden-print"src="/mlogo.png">
         
         @if(Auth::guest())
         <p><a class="btn btn-primary btn-lg" href="/login" role="button">Login</a> 

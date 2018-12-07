@@ -28,17 +28,7 @@ class withdrawalsController extends Controller
     public function index(Request $request)
     {
         // $withdrawals = withdrawals::all();
-                $withdrawals = withdrawals::orderBy('date_to_withdraw','desc')->paginate(15);
-
-        // return view('withdrawals.index')->with('withdrawals',$withdrawals);
-
-
-        // searching
-        $search_value = $request->input('search_value');
-        // $withdrawals = withdrawals::latest()->paginate(15);
-                // ->search($search_value)
-                // ->paginate(15);
-
+        $withdrawals = withdrawals::orderBy('date_to_withdraw','desc')->paginate(15);
         return view('withdrawals.index', compact('withdrawals'))->with('withdrawals', $withdrawals);
         // return view('posts.index', compact('posts'))->with('posts', $posts)->with('users', $users);
 
@@ -76,6 +66,11 @@ class withdrawalsController extends Controller
         return view('withdrawals.create1');
     }
 
+    public function week()
+    {
+        return view('withdrawals.week');
+
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -121,6 +116,8 @@ class withdrawalsController extends Controller
         $withdrawals->qty3 = $request->input('qty3');
         $withdrawals->info1 = $request->input('info1');
         $withdrawals->info2 = $request->input('info2');
+        $withdrawals->week = $request->input('week');
+
 
         
 
@@ -201,6 +198,7 @@ class withdrawalsController extends Controller
         $withdrawals->qty3 = $request->input('qty3');
         $withdrawals->info1 = $request->input('info1');
         $withdrawals->info2 = $request->input('info2');
+        $withdrawals->week = $request->input('week');
 
         
         $withdrawals->save();

@@ -35,7 +35,10 @@
             {{Form::label('date', 'Document Date')}}
             {{Form::date('date', $withdrawals->date, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
              </td>
-             <td></td>
+             <td>
+             {{Form::label('date', 'Week number')}}
+            {{Form::number('week', $withdrawals->week, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+             </td>
              <td></td>
             </tr>
 </table>

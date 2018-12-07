@@ -1,24 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
-    
+
+    <?php $withdrawals = DB::table('withdrawals')->where('week', '=', '48')->get();?>
+
 <div >   
 <div class="row">
     <div class="col-md-2">
-        <a href="/withdrawals/create1" class="hidden-print btn btn-default " style="margin-right: 20px; margin-bottom: 20px;">Withdraw Crates</a>
+        <a href="/withdrawals/" class="hidden-print btn btn-default " style="margin-right: 20px; margin-bottom: 20px;">Back</a>
     </div> 
-        <div class="col-md-2">
-    <a href="/withdrawals/create" class="hidden-print btn btn-default" style="margin-right: 20px;">Withdraw Boxes</a>
-    </div> 
-    <div class="col-md-2">
-        <input class="hidden-print form-control " type="text" name="search_value" style="margin-bottom: 10px;" 
-        placeholder="View on week" value="">
-    </div> 
-    <div class="col-md-2">
-        <!-- <button href="/withdrawals/week" style="padding-bottom:8px"class="hidden-print btn btn-default">        </button> -->
-        <a href="/withdrawals/week" class="hidden-print btn btn-default" style="margin-right: 20px;">View</a>
-
-    </div> 
+     
       
 
 <div class="col-md-2">
@@ -63,15 +54,8 @@
         @foreach($withdrawals as $withdrawal)
        
                 <tr class="hidden-print">
-                <?php $dayOfWeek = date("W", strtotime($withdrawal->date));?>
-
-                    <td><h7>
-                    @if($withdrawal->week==null)
-                      {{$dayOfWeek}}
-                    @else
-                       {{$withdrawal->week}}
-                    @endif
-                    </h7></td>
+                <?php  $dayOfWeek = date("W", strtotime($withdrawal->date)); ?>
+                    <td><h7>{{$dayOfWeek}} </h7></td>
                     <th><h7>{{$withdrawal->date}}</h7> </th>
                     <th><h7>{{$withdrawal->info1}}</h7> </th>
                     <th><h7>{{$withdrawal->date_to_withdraw}}</h7> </th>
@@ -116,7 +100,6 @@
     
 
  <div class="pagination flex-m flex-w p-t-26 hidden-print" style="margin-right:190px; ">
- {{$withdrawals->links()}}		
 </div>
 </div>
 
