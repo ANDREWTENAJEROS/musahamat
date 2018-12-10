@@ -15,6 +15,8 @@ class withdrawalsController extends Controller
      *
      * @return void
      */
+    
+
     public function __construct()
     {
         $this->middleware('auth', ['except' => ['index', 'show']]);
@@ -77,6 +79,13 @@ class withdrawalsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function findweek(Request $request){
+
+        $withdrawals = withdrawals::where('week',$request->input('findweek'))->paginate(15);
+        return view('withdrawals.index', compact('withdrawals'))->with('withdrawals', $withdrawals);
+
+    }
     public function store(Request $request)
     {
 
@@ -91,38 +100,41 @@ class withdrawalsController extends Controller
         // Create withdrawals
         // $withdrawals = DB::select(SELECT * FROM withdrawals);
        
+if($request->input('date_to_withdraw')==null){
+    $withdrawals = withdrawals::where('week',$request->input('findweek'))->orderBy('item1','desc')->paginate(15);
+    return view('withdrawals.index', compact('withdrawals'))->with('withdrawals', $withdrawals);
+}else{
+      
+    $withdrawals = new withdrawals;
+    $withdrawals->actual_withdraw_date = $request->input('actual_withdraw_date');
+    $withdrawals->status = $request->input('status');
+    $withdrawals->date = $request->input('date');
+    $withdrawals->company = $request->input('company');
+    $withdrawals->address = $request->input('address');
+    $withdrawals->date_to_withdraw = $request->input('date_to_withdraw');
+    $withdrawals->driver = $request->input('driver');
+    $withdrawals->plate_no = $request->input('plate_no');
+    $withdrawals->po_reference = $request->input('po_reference');
+    $withdrawals->destination = $request->input('destination');
+    $withdrawals->kg1 = $request->input('kg1');
+    $withdrawals->kg2 = $request->input('kg2');
+    $withdrawals->kg3 = $request->input('kg3');
+    $withdrawals->item1 = $request->input('item1');
+    $withdrawals->item2 = $request->input('item2');
+    $withdrawals->item3 = $request->input('item3');
+    $withdrawals->qty1 = $request->input('qty1');
+    $withdrawals->qty2 = $request->input('qty2');
+    $withdrawals->qty3 = $request->input('qty3');
+    $withdrawals->info1 = $request->input('info1');
+    $withdrawals->info2 = $request->input('info2');
+    $withdrawals->week = $request->input('week');
 
-       
-         
-        $withdrawals = new withdrawals;
-        $withdrawals->actual_withdraw_date = $request->input('actual_withdraw_date');
-        $withdrawals->status = $request->input('status');
-        $withdrawals->date = $request->input('date');
-        $withdrawals->company = $request->input('company');
-        $withdrawals->address = $request->input('address');
-        $withdrawals->date_to_withdraw = $request->input('date_to_withdraw');
-        $withdrawals->driver = $request->input('driver');
-        $withdrawals->plate_no = $request->input('plate_no');
-        $withdrawals->po_reference = $request->input('po_reference');
-        $withdrawals->destination = $request->input('destination');
-        $withdrawals->kg1 = $request->input('kg1');
-        $withdrawals->kg2 = $request->input('kg2');
-        $withdrawals->kg3 = $request->input('kg3');
-        $withdrawals->item1 = $request->input('item1');
-        $withdrawals->item2 = $request->input('item2');
-        $withdrawals->item3 = $request->input('item3');
-        $withdrawals->qty1 = $request->input('qty1');
-        $withdrawals->qty2 = $request->input('qty2');
-        $withdrawals->qty3 = $request->input('qty3');
-        $withdrawals->info1 = $request->input('info1');
-        $withdrawals->info2 = $request->input('info2');
-        $withdrawals->week = $request->input('week');
 
+    
 
-        
-
-        $withdrawals->save();
-        return redirect('/withdrawals')->with('success', 'created');
+    $withdrawals->save();
+    return redirect('/withdrawals')->with('success', 'created');
+}
         
     }
 

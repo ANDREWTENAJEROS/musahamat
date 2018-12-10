@@ -1,8 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    
+
 <div >   
+{!! Form::open(['action' => 'withdrawalsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+
 <div class="row">
     <div class="col-md-2">
         <a href="/withdrawals/create1" class="hidden-print btn btn-default " style="margin-right: 20px; margin-bottom: 20px;">Withdraw Crates</a>
@@ -11,14 +13,21 @@
     <a href="/withdrawals/create" class="hidden-print btn btn-default" style="margin-right: 20px;">Withdraw Boxes</a>
     </div> 
     <div class="col-md-2">
-        <input class="hidden-print form-control " type="text" name="search_value" style="margin-bottom: 10px;" 
-        placeholder="View on week" value="">
+    {{Form::text('findweek', '', ['class' => 'form-control hidden-print', 'required' => 'required' ,'placeholder' => 'Search Week number'])}}
+
+        <!--  <input class="hidden-print form-control " type="text" name="search_value" style="margin-bottom: 10px;"  -->
+         <!-- placeholder="View on week" value=""> -->
     </div> 
     <div class="col-md-2">
         <!-- <button href="/withdrawals/week" style="padding-bottom:8px"class="hidden-print btn btn-default">        </button> -->
-        <a href="/withdrawals/week" class="hidden-print btn btn-default" style="margin-right: 20px;">View</a>
+        {{Form::submit('Search', ['class'=>'btn btn-primary hidden-print'])}}
 
+    {!! Form::close() !!}
     </div> 
+    <div class="col-md-2">
+
+        <a href="/withdrawals/" class="hidden-print btn btn-default" style="margin-right: 20px;">Clear search</a>
+        </div>
       
 
 <div class="col-md-2">
@@ -59,11 +68,27 @@
               <th><h7>Destination</h7></th>
                 </tr>
       
+                </tr>
+                <tr class="visible-print">
+                <!-- <tr> -->
+                <th><h7></h7> </th>
+              <th><h7></h7> </th>
+              <th><h7></h7> </th>
+              <th><h7></h7> </th>
+              <th><h7></h7> </th>
+              <th><h7></h7> </th>
+              <th><h7></h7> </th>
+              <th><h7></h7></th>
+              <th><h7></h7></th>
+              <th><h7></h7></th>
+              <th><h7></h7></th>
+                </tr>
     @if(count($withdrawals) > 0)
         @foreach($withdrawals as $withdrawal)
-       
+        <?php $dayOfWeek = date("W", strtotime($withdrawal->date));?>
+
+                @if($withdrawal->destination!=NULL)
                 <tr class="hidden-print">
-                <?php $dayOfWeek = date("W", strtotime($withdrawal->date));?>
 
                     <td><h7>
                     @if($withdrawal->week==null)
@@ -89,7 +114,7 @@
                     <th><a href="/withdrawals/{{$withdrawal->id}}"  class="btn btn-default hidden-print">Print ATW</a></th>
 
                 <tr>
-        
+                @endif
                <tr class="visible-print">
              
                      <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$dayOfWeek}} </h6></td>

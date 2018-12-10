@@ -28,6 +28,8 @@ Route::get('/services', 'PagesController@services');
 Route::get('/withdrawals/create1', 'withdrawalsController@create1');
 Route::get('/product_lines/create1', 'product_linesController@create1');
 Route::get('/withdrawals/week', 'withdrawalsController@week');
+Route::put('/withdrawals', 'withdrawalsController@findweek');
+
 
 
 Route::resource('supplier', 'supplierController');
