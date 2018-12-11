@@ -162,7 +162,7 @@
                         
                         
                       
-        {{Form::submit('Submit', ['class'=>'btn btn-primary pull-right'])}}
+        {{Form::submit('Submit', ['class'=>'btn btn-primary pull-right hidden-print'])}}
     {!! Form::close() !!}
     </br>
     </br>

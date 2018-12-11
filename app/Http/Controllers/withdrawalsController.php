@@ -101,6 +101,20 @@ class withdrawalsController extends Controller
         // $withdrawals = DB::select(SELECT * FROM withdrawals);
        
 if($request->input('date_to_withdraw')==null){
+    if($request->input('findweek')==null){
+        
+
+
+        $withdrawals = withdrawals::where([
+            ['week', '=', $request->input('findweek')],
+            ['date_to_withdraw', 'like', $request->input('findyear')]
+        ])->orderBy('item1','desc')->paginate(15);
+
+        // $withdrawals = withdrawals::where('week',$request->input('findweek'))->orderBy('item1','desc')->paginate(15);
+        // $withdrawals = withdrawals::orderBy('item1','desc')->paginate(15);
+
+        return view('withdrawals.index', compact('withdrawals'))->with('withdrawals', $withdrawals);
+    }
     $withdrawals = withdrawals::where('week',$request->input('findweek'))->orderBy('item1','desc')->paginate(15);
     return view('withdrawals.index', compact('withdrawals'))->with('withdrawals', $withdrawals);
 }else{
