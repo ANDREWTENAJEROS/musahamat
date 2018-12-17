@@ -101,21 +101,28 @@ class withdrawalsController extends Controller
         // $withdrawals = DB::select(SELECT * FROM withdrawals);
        
 if($request->input('date_to_withdraw')==null){
-    if($request->input('findweek')==null){
+    $withdrawals = withdrawals::paginate(15);
+    if($request->input('findweek')!=null){
         
 
-
-        $withdrawals = withdrawals::where([
-            ['week', '=', $request->input('findweek')],
-            ['date_to_withdraw', 'like', $request->input('findyear')]
-        ])->orderBy('item1','desc')->paginate(15);
+        if($request->input('type')=='All'){
+            $withdrawals = withdrawals::where([
+                ['week', '=', $request->input('findweek')],
+                [ 'year' , '=', $request->input('findyear')]
+            ])->orderBy('item1','desc')->paginate(15);
+        }else{
+            $withdrawals = withdrawals::where([
+                ['type', '=', $request->input('type')],
+                ['week', '=', $request->input('findweek')],
+                [ 'year' , '=', $request->input('findyear')]
+            ])->orderBy('item1','desc')->paginate(15);
+        }
+        
 
         // $withdrawals = withdrawals::where('week',$request->input('findweek'))->orderBy('item1','desc')->paginate(15);
         // $withdrawals = withdrawals::orderBy('item1','desc')->paginate(15);
 
-        return view('withdrawals.index', compact('withdrawals'))->with('withdrawals', $withdrawals);
     }
-    $withdrawals = withdrawals::where('week',$request->input('findweek'))->orderBy('item1','desc')->paginate(15);
     return view('withdrawals.index', compact('withdrawals'))->with('withdrawals', $withdrawals);
 }else{
       
@@ -142,9 +149,13 @@ if($request->input('date_to_withdraw')==null){
     $withdrawals->info1 = $request->input('info1');
     $withdrawals->info2 = $request->input('info2');
     $withdrawals->week = $request->input('week');
+    $withdrawals->year = $request->input('year');
+    if($withdrawal->qty3!=null){
+        $withdrawals->type = 'set';
+    }else{
+        $withdrawals->type = 'pallets';
 
-
-    
+    }
 
     $withdrawals->save();
     return redirect('/withdrawals')->with('success', 'created');
@@ -225,6 +236,7 @@ if($request->input('date_to_withdraw')==null){
         $withdrawals->info1 = $request->input('info1');
         $withdrawals->info2 = $request->input('info2');
         $withdrawals->week = $request->input('week');
+        $withdrawals->year = $request->input('year');
 
         
         $withdrawals->save();

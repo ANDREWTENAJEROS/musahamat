@@ -38,8 +38,13 @@
              <td>
              {{Form::label('date', 'Week number')}}
             {{Form::number('week', $withdrawals->week, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+
              </td>
-             <td></td>
+             
+             <td>          
+               {{Form::label('date', 'Year')}}
+               {{Form::number('year', date("Y"), ['class' => 'form-control  ', 'required' => 'required' ,'placeholder' => ' '])}}
+</td>
             </tr>
 </table>
 <h4>Musahamat Trucking</h4>

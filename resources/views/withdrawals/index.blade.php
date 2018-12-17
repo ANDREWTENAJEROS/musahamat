@@ -24,6 +24,17 @@
          <!-- placeholder="View on week" value=""> -->
 
     <div class="col-md-2">
+    <div class="form-group">
+    <select name="type" class="form-control">
+        <option class="dropdown-item" value="set">Set</option>
+        <option class="dropdown-item" value="pallets">Pallets</option>
+        <option class="dropdown-item" value="">All</option>
+
+    </select>
+    </div>
+
+ </div>
+   <div class="col-md-1">
         <!-- <button href="/withdrawals/week" style="padding-bottom:8px"class="hidden-print btn btn-default">        </button> -->
         {{Form::submit('Search', ['class'=>'btn btn-primary hidden-print', 'style'=>'margin-right: 20px; margin-bottom: 20px;'])}}
 
@@ -35,7 +46,7 @@
         </div>
       
 
-<div class="col-md-2">
+<div class="col-md-1">
  <a onclick="print()" class="hidden-print btn btn-default " style="margin-right: 20px; ">Print Summary</a>
     <br><br>
     </div>
@@ -118,7 +129,7 @@
                     <th><h7 style=" ">PALLETS</h7></th>
                     @endif
                     <th><h7>{{$withdrawal->destination}}</h7></th>
-                    <th><a href="/withdrawals/{{$withdrawal->id}}"  class="btn btn-default hidden-print">Print ATW</a></th>
+ 
 
                 <tr>
              
@@ -148,7 +159,7 @@
 
         
     @else
-        <p>No withdrawals for HKJ1</p>
+        <td></td><td></td><td></td><td></td><td></td><td><h7>No  ithdrawals for HKJ1</h7></td>
     @endif
     
      <!-- HKJ2 FOREACH -->
@@ -197,7 +208,7 @@
                     <th><h7 style=" ">PALLETS</h7></th>
                     @endif
                     <th><h7>{{$withdrawal->destination}}</h7></th>
-                    <th><a href="/withdrawals/{{$withdrawal->id}}"  class="btn btn-default hidden-print">Print ATW</a></th>
+ 
 
                 <tr>
                 
@@ -226,7 +237,7 @@
 
         
     @else
-        <p>No withdrawals for HKJ2</p>
+        <td></td><td></td><td></td><td></td><td></td><td><h7>No  ithdrawals for HKJ2</h7></td>
     @endif
     
     
@@ -276,7 +287,7 @@
                     <th><h7 style=" ">PALLETS</h7></th>
                     @endif
                     <th><h7>{{$withdrawal->destination}}</h7></th>
-                    <th><a href="/withdrawals/{{$withdrawal->id}}"  class="btn btn-default hidden-print">Print ATW</a></th>
+ 
 
                 <tr>
                
@@ -305,7 +316,7 @@
 
         
     @else
-        <p>No withdrawals for HKJ3</p>
+        <td></td><td></td><td></td><td></td><td></td><td><h7>No  ithdrawals for HKJ3</h7></td>
     @endif
     
     
@@ -355,7 +366,7 @@
                     <th><h7 style=" ">PALLETS</h7></th>
                     @endif
                     <th><h7>{{$withdrawal->destination}}</h7></th>
-                    <th><a href="/withdrawals/{{$withdrawal->id}}"  class="btn btn-default hidden-print">Print ATW</a></th>
+ 
 
                 <tr>
                
@@ -384,7 +395,7 @@
 
         
     @else
-        <p>No withdrawals for HKJ4</p>
+        <td></td><td></td><td></td><td></td><td></td><td><h7>No  ithdrawals for HKJ4</h7></td>
     @endif
     
     
@@ -434,7 +445,7 @@
                     <th><h7 style=" ">PALLETS</h7></th>
                     @endif
                     <th><h7>{{$withdrawal->destination}}</h7></th>
-                    <th><a href="/withdrawals/{{$withdrawal->id}}"  class="btn btn-default hidden-print">Print ATW</a></th>
+ 
 
                 <tr>
                
@@ -463,7 +474,7 @@
 
         
     @else
-        <p>No withdrawals for HKJ5</p>
+        <td></td><td></td><td></td><td></td><td></td><td><h7>No  ithdrawals for HKJ5</h7></td>
     @endif
     
     
@@ -514,7 +525,7 @@
                     <th><h7 style=" ">PALLETS</h7></th>
                     @endif
                     <th><h7>{{$withdrawal->destination}}</h7></th>
-                    <th><a href="/withdrawals/{{$withdrawal->id}}"  class="btn btn-default hidden-print">Print ATW</a></th>
+ 
 
                 <tr>
                 
@@ -543,7 +554,7 @@
 
         
     @else
-        <p>No withdrawals for HKJ6</p>
+        <td></td><td></td><td></td><td></td><td></td><td><h7>No  ithdrawals for HKJ6</h7></td>
     @endif
     
      <!-- HKJ7 FOREACH -->
@@ -592,7 +603,7 @@
                     <th><h7 style=" ">PALLETS</h7></th>
                     @endif
                     <th><h7>{{$withdrawal->destination}}</h7></th>
-                    <th><a href="/withdrawals/{{$withdrawal->id}}"  class="btn btn-default hidden-print">Print ATW</a></th>
+ 
 
                 <tr>
                 
@@ -621,7 +632,7 @@
 
         
     @else
-        <p>No withdrawals for HKJ7</p>
+        <td></td><td></td><td></td><td></td><td></td><td><h7>No  ithdrawals for HKJ7</h7></td>
     @endif
     
     
@@ -671,7 +682,7 @@
                     <th><h7 style=" ">PALLETS</h7></th>
                     @endif
                     <th><h7>{{$withdrawal->destination}}</h7></th>
-                    <th><a href="/withdrawals/{{$withdrawal->id}}"  class="btn btn-default hidden-print">Print ATW</a></th>
+ 
 
                 <tr>
                
@@ -700,7 +711,7 @@
 
         
     @else
-        <p>No withdrawals for NADER</p>
+        <td></td><td></td><td></td><td></td><td></td><td><h7>No  ithdrawals for NADER</h7></td>
     @endif
     
     

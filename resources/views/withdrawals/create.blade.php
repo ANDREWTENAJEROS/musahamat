@@ -32,11 +32,13 @@
             </td>
             <td>
             {{Form::label('date', 'Document Date')}}
-            {{Form::date('date', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+            {{Form::date('date',  date("m:d:Y"), ['class' => 'form-control', 'required' => 'required' ,'placeholder' =>''])}}
              </td>
              <td>
              {{Form::label('date', 'Week number')}}
-            {{Form::number('week', $dayOfWeek = date("W"), ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+            {{Form::number('week', date("W"), ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+            {{Form::number('year', date("Y"), ['class' => 'form-control hidden ', 'style'=>'display:hidden', 'required' => 'required' ,'placeholder' => ' '])}}
+
              </td>
              <td></td>
             </tr>

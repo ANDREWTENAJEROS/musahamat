@@ -39,6 +39,7 @@
              <td>
              {{Form::label('date', 'Week number')}}
             {{Form::number('week', $dayOfWeek = date("W"), ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+            {{Form::number('year', date("Y"), ['class' => 'form-control hidden ', 'style'=>'display:hidden', 'required' => 'required' ,'placeholder' => ' '])}}
              </td>
              <td></td>
             </tr>
