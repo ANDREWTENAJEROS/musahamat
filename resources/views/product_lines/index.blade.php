@@ -4,7 +4,7 @@
     <h2>Product lines</h2>
     
 @if(count($product_lines) > 0)
-<table class="table table-striped">
+<table class="table table-striped table-hover">
                             <tr>
                                     <th>Supplier</th>
                                 <th>Name</th>

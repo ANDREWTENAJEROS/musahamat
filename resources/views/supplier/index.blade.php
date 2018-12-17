@@ -7,7 +7,7 @@
     <a href="/supplier/create" class="hidden-print btn btn-default pull-left" style="margin-right: 20px;">New Supplier</a>
     <a onclick="print()" class="hidden-print btn btn-default pull-right" style="margin-right: 20px;">Print</a>
     <br><br>
-<table class="table table-striped " style="margin-bottom: 0px; ">
+<table class="table table-striped table-hover" style="margin-bottom: 0px; ">
      
               <tr class="hidden-print">
                     <th><h4>Suppliers</h4> </th>

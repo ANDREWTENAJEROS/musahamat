@@ -145,7 +145,7 @@
     @if(Auth::guest())
     <h4 class="page-break-after">Documents</h4>
     @else
-    <table class="table table-striped" style="margin-bottom: 0px;">
+    <table class="table table-striped table-hover" style="margin-bottom: 0px;">
         <tr>
         <th><h4>Documents</h4></th>
         
@@ -158,7 +158,7 @@
     @endif
     
     
-<table class="table table-striped">
+<table class="table table-striped table-hover">
                             <tr style="   ">
                                 
                                 <th>Name</th>
@@ -231,7 +231,7 @@
 <hr>
 <div class="pagebreak"> </div>
 
-   <table class="table table-striped" style="margin-bottom: 0px;">
+   <table class="table table-striped table-hover" style="margin-bottom: 0px;">
         <tr>
         <th><h4>Product Lines</h4></th>
         
@@ -245,7 +245,7 @@
     <?php $product_lines = DB::table('product_lines')->where('supplier', '=', $_SESSION['bid'])->get();?>
 
 @if(count($product_lines) > 0)
-<table class="table table-striped">
+<table class="table table-striped table-hover">
                             <tr>
                                 <th>Name</th>
                                 <th>Certificate</th>
@@ -419,7 +419,7 @@
 @if(Auth::guest())
 <h5 class="page-break-after">Documents</h5>
 @else
-<table class="table table-striped" style="margin-bottom: 0px;">
+<table class="table table-striped table-hover" style="margin-bottom: 0px;">
     <tr>
     <th><h5>Documents</h5></th>    
 </th>
@@ -427,7 +427,7 @@
 </table>
 @endif
 @if(count($product_lines) > 0 )
-<table class="table table-striped">
+<table class="table table-striped table-hover">
                         <tr>
                             
                             <th><h6 style="margin-top: 0px; margin-bottom: 0px;">Name</h6></th>
@@ -502,7 +502,7 @@
 <?php $product_lines = DB::table('product_lines')->where('supplier', '=', $_SESSION['bid'])->get();?>
 
 @if(count($product_lines) > 0)
-<table class="table table-striped">
+<table class="table table-striped table-hover">
                         <tr>
                             <th ><h6 style="margin-top: 0px; margin-bottom: 0px;">Name</h6></th>
                             <th ><h6 style="margin-top: 0px; margin-bottom: 0px;">Certificate</h6></th>

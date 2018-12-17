@@ -234,7 +234,7 @@
     <?php $product_lines = DB::table('product_lines')->where('supplier', '=', $_SESSION['bid'])->get();?>
 
 @if(count($product_lines) > 0)
-<table class="table table-striped">
+<table class="table table-striped table-hover">
                             <tr>
                                 <th>Name</th>
                                 <th>certificate</th>

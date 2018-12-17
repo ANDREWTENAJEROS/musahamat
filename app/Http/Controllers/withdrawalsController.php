@@ -30,7 +30,7 @@ class withdrawalsController extends Controller
     public function index(Request $request)
     {
         // $withdrawals = withdrawals::all();
-        $withdrawals = withdrawals::orderBy('date_to_withdraw','desc')->paginate(15);
+        $withdrawals = withdrawals::orderBy('date_to_withdraw','desc')->paginate(40);
         return view('withdrawals.index', compact('withdrawals'))->with('withdrawals', $withdrawals);
         // return view('posts.index', compact('posts'))->with('posts', $posts)->with('users', $users);
 
@@ -150,15 +150,15 @@ if($request->input('date_to_withdraw')==null){
     $withdrawals->info2 = $request->input('info2');
     $withdrawals->week = $request->input('week');
     $withdrawals->year = $request->input('year');
-    if($withdrawal->qty3!=null){
+    if($withdrawals->qty3!=null){
         $withdrawals->type = 'set';
     }else{
         $withdrawals->type = 'pallets';
-
     }
 
     $withdrawals->save();
-    return redirect('/withdrawals')->with('success', 'created');
+    $redirectto = '/withdrawals/'.$withdrawals->id;
+    return redirect($redirectto)->with('success', 'created');
 }
         
     }
@@ -237,6 +237,11 @@ if($request->input('date_to_withdraw')==null){
         $withdrawals->info2 = $request->input('info2');
         $withdrawals->week = $request->input('week');
         $withdrawals->year = $request->input('year');
+        if($withdrawals->qty3!=null){
+            $withdrawals->type = 'set';
+        }else{
+            $withdrawals->type = 'pallets';
+        }
 
         
         $withdrawals->save();

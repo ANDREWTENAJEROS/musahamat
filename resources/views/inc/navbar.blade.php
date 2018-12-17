@@ -26,7 +26,8 @@
               <li><a href="/supplier">Suppliers</a></li>
               <li><a href="/product_lines">Product Lines</a></li>
               <li><a href="/withdrawals/ ">Crates & Boxes</a></li>
-              
+              <!-- <li><a href="/supplier/create" class="hidden-print btn btn-default pull-left" style="margin-right: 20px;">Switch theme</a></li> -->
+
                 <li>
 <!--                 
                 {--!! Form::open(['action' => 'lightingController@toggle', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!--}

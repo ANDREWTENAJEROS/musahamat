@@ -11,7 +11,11 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
+    @if(date('A')=='AM')
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @else
     <link href="{{ asset('css/app_light.css') }}" rel="stylesheet">
+    @endif
 </head>
 <body style="">
     <div id="app">

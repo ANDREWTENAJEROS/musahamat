@@ -5,55 +5,33 @@
 <div >   
 {!! Form::open(['action' => 'withdrawalsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
-<div class="row" style=" z-index:0;">
-    <div class="col-md-2">
-        <a href="/withdrawals/create1" class="hidden-print btn btn-default " style="margin-right: 20px; margin-bottom: 20px;">Withdraw Crates</a>
-    </div> 
-    <div class="col-md-2">
-    <a href="/withdrawals/create" class="hidden-print btn btn-default" style="margin-right: 20px; margin-bottom: 20px;">Withdraw Boxes</a>
-    </div> 
+<ul class="list-inline">
+              <li><a href="/withdrawals/create1" class="hidden-print btn btn-default " style="margin: 10px; ">Withdraw Crates</a></li>
+              <li><a href="/withdrawals/create" class="hidden-print btn btn-default" style="margin: 10px;">Withdraw Boxes</a></li>
 
-    <div class="col-md-1">
-    {{Form::text('findweek','', ['class' => 'form-control hidden-print', 'style'=>'margin-right: 20px; margin-bottom: 20px; width:80px' , 'required' => 'required' ,'placeholder' => 'week'])}}
-    </div> 
 
-    <div class="col-md-1">
-    {{Form::text('findyear', '', ['class' => 'form-control hidden-print', 'style'=>'margin-right: 20px; margin-bottom: 20px; width:80px', 'required' => 'required' ,'placeholder' => 'year'])}}
-    </div> 
-        <!--  <input class="hidden-print form-control " type="text" name="search_value" style="margin-bottom: 10px;"  -->
-         <!-- placeholder="View on week" value=""> -->
+              <li>    {{Form::text('findweek','', ['class' => 'form-control hidden-print', 'style'=>'margin: 10px; width:80px' , 'required' => 'required' ,'placeholder' => 'week'])}}</li>
+              <li>    {{Form::text('findyear', '', ['class' => 'form-control hidden-print', 'style'=>'margin: 10px; width:80px', 'required' => 'required' ,'placeholder' => 'year'])}}</li>
+              <li>
+                <select name="type" class="form-control hidden-print">
+                    <option class="dropdown-item" value="set">Set</option>
+                    <option class="dropdown-item" value="pallets">Pallets</option>
+                    <option class="dropdown-item" value="">All</option>
+                </select>
+              </li>
+              <li>
+                 {{Form::submit('Search', ['class'=>'btn btn-primary hidden-print', 'style'=>'margin: 10px;'])}}
+                 {!! Form::close() !!}
+                </li>
+              <li><a href="/withdrawals/" class="hidden-print btn btn-default" style="margin: 10px; ">Clear search</a></li>
+              <li> <a onclick="print()" class="hidden-print btn btn-default " style="margin: 10px; ">Print Summary</a></li>
 
-    <div class="col-md-2">
-    <div class="form-group">
-    <select name="type" class="form-control">
-        <option class="dropdown-item" value="set">Set</option>
-        <option class="dropdown-item" value="pallets">Pallets</option>
-        <option class="dropdown-item" value="">All</option>
 
-    </select>
-    </div>
+</ul>
 
- </div>
-   <div class="col-md-1">
-        <!-- <button href="/withdrawals/week" style="padding-bottom:8px"class="hidden-print btn btn-default">        </button> -->
-        {{Form::submit('Search', ['class'=>'btn btn-primary hidden-print', 'style'=>'margin-right: 20px; margin-bottom: 20px;'])}}
-
-    {!! Form::close() !!}
-    </div> 
-    <div class="col-md-2">
-
-        <a href="/withdrawals/" class="hidden-print btn btn-default" style="margin-right: 20px; margin-bottom: 20px;">Clear search</a>
-        </div>
-      
-
-<div class="col-md-1">
- <a onclick="print()" class="hidden-print btn btn-default " style="margin-right: 20px; ">Print Summary</a>
-    <br><br>
-    </div>
-</div>
- <table class="table table-striped" style="margin-bottom: 0px;">
+ <table class="table table-striped table-hover" style="margin-bottom: 0px;">
      
-              <tr class="hidden-print">
+              <tr  class="hidden-print">
               <th><h7>Week</h7> </th>
               <th><h7>Date Prepared</h7> </th>
               <th><h7>Boxplant</h7> </th>
@@ -106,7 +84,7 @@
         <?php $dayOfWeek = date("W", strtotime($withdrawal->date));?>
 
                 @if($withdrawal->destination=='HKJ1')
-                <tr class="hidden-print">
+                <tr class='clickable-row' data-href='/withdrawals/{{$withdrawal->id}}'>
 
                     <td><h7>
                     @if($withdrawal->week==null)
@@ -115,41 +93,46 @@
                        {{$withdrawal->week}}
                     @endif
                     </h7></td>
-                    <th><h7>{{$withdrawal->date}}</h7> </th>
-                    <th><h7>{{$withdrawal->info1}}</h7> </th>
-                    <th><h7>{{$withdrawal->date_to_withdraw}}</h7> </th>
-                    <th><h7>{{$withdrawal->driver}}</h7> </th>
-                    <th><h7>{{$withdrawal->plate_no}}</h7> </th>
-                    <th><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </th>
-                    <th><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></th>
-                    <th><h7>{{$withdrawal->qty1}}</h7></th>
-                    @if($withdrawal->qty3!=null)
-                    <th><h7 style=" ">SET</h7></th>
-                    @else
-                    <th><h7 style=" ">PALLETS</h7></th>
+                    <td><h7>{{$withdrawal->date}}</h7> </td>
+                    <td><h7>{{$withdrawal->info1}}</h7> </td>
+                    <td><h7>{{$withdrawal->date_to_withdraw}}</h7> </td>
+                    <td><h7>{{$withdrawal->driver}}</h7> </td>
+                    <td><h7>{{$withdrawal->plate_no}}</h7> </td>
+                    <td><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </td>
+                    @if($withdrawal->qty3!=null)                     
+                    <td><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></td>                     
+                    @else                     
+                    <td><h7> {{$withdrawal->item1}}</h7></td>                     
                     @endif
-                    <th><h7>{{$withdrawal->destination}}</h7></th>
+                    <td><h7>{{$withdrawal->qty1}}</h7></ <td>
+                    @if($withdrawal->qty3!=null)
+                    <td><h7 style=" ">SET</h7></td>
+                    @else
+                    <td><h7 style=" ">PALLETS</h7></td>
+                    @endif
+                    <td><h7>{{$withdrawal->destination}}</h7></td>
  
+                    
 
                 <tr>
              
-               <tr class="visible-print">
+               <tr class="visible-print clickable-row" data-href='/withdrawals/{{$withdrawal->id}}'>
              
                      <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$dayOfWeek}} </h6></td>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></td>
                     @else
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></td>
                     @endif
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></td>
                 <tr>
           @endif
         @endforeach
@@ -185,7 +168,7 @@
         <?php $dayOfWeek = date("W", strtotime($withdrawal->date));?>
 
                 @if($withdrawal->destination=='HKJ2')
-                <tr class="hidden-print">
+                <tr class='clickable-row' data-href='/withdrawals/{{$withdrawal->id}}'>
 
                     <td><h7>
                     @if($withdrawal->week==null)
@@ -194,41 +177,41 @@
                        {{$withdrawal->week}}
                     @endif
                     </h7></td>
-                    <th><h7>{{$withdrawal->date}}</h7> </th>
-                    <th><h7>{{$withdrawal->info1}}</h7> </th>
-                    <th><h7>{{$withdrawal->date_to_withdraw}}</h7> </th>
-                    <th><h7>{{$withdrawal->driver}}</h7> </th>
-                    <th><h7>{{$withdrawal->plate_no}}</h7> </th>
-                    <th><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </th>
-                    <th><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></th>
-                    <th><h7>{{$withdrawal->qty1}}</h7></th>
+                    <td><h7>{{$withdrawal->date}}</h7> </td>
+                    <td><h7>{{$withdrawal->info1}}</h7> </td>
+                    <td><h7>{{$withdrawal->date_to_withdraw}}</h7> </td>
+                    <td><h7>{{$withdrawal->driver}}</h7> </td>
+                    <td><h7>{{$withdrawal->plate_no}}</h7> </td>
+                    <td><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </td>
+                    @if($withdrawal->qty3!=null)                     <td><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></td>                     @else                     <td><h7> {{$withdrawal->item1}}</h7></td>                     @endif
+                    <td><h7>{{$withdrawal->qty1}}</h7></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h7 style=" ">SET</h7></th>
+                    <td><h7 style=" ">SET</h7></td>
                     @else
-                    <th><h7 style=" ">PALLETS</h7></th>
+                    <td><h7 style=" ">PALLETS</h7></td>
                     @endif
-                    <th><h7>{{$withdrawal->destination}}</h7></th>
+                    <td><h7>{{$withdrawal->destination}}</h7></td>
  
 
                 <tr>
                 
-               <tr class="visible-print">
+               <tr class="visible-print clickable-row" data-href='/withdrawals/{{$withdrawal->id}}'>
              
                      <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$dayOfWeek}} </h6></td>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></td>
                     @else
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></td>
                     @endif
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></td>
                 <tr>
        @endif
         @endforeach
@@ -264,7 +247,7 @@
         <?php $dayOfWeek = date("W", strtotime($withdrawal->date));?>
 
                 @if($withdrawal->destination=='HKJ3')
-                <tr class="hidden-print">
+                <tr class='clickable-row' data-href='/withdrawals/{{$withdrawal->id}}'>
 
                     <td><h7>
                     @if($withdrawal->week==null)
@@ -273,41 +256,41 @@
                        {{$withdrawal->week}}
                     @endif
                     </h7></td>
-                    <th><h7>{{$withdrawal->date}}</h7> </th>
-                    <th><h7>{{$withdrawal->info1}}</h7> </th>
-                    <th><h7>{{$withdrawal->date_to_withdraw}}</h7> </th>
-                    <th><h7>{{$withdrawal->driver}}</h7> </th>
-                    <th><h7>{{$withdrawal->plate_no}}</h7> </th>
-                    <th><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </th>
-                    <th><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></th>
-                    <th><h7>{{$withdrawal->qty1}}</h7></th>
+                    <td><h7>{{$withdrawal->date}}</h7> </td>
+                    <td><h7>{{$withdrawal->info1}}</h7> </td>
+                    <td><h7>{{$withdrawal->date_to_withdraw}}</h7> </td>
+                    <td><h7>{{$withdrawal->driver}}</h7> </td>
+                    <td><h7>{{$withdrawal->plate_no}}</h7> </td>
+                    <td><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </td>
+                    @if($withdrawal->qty3!=null)                     <td><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></td>                     @else                     <td><h7> {{$withdrawal->item1}}</h7></td>                     @endif
+                    <td><h7>{{$withdrawal->qty1}}</h7></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h7 style=" ">SET</h7></th>
+                    <td><h7 style=" ">SET</h7></td>
                     @else
-                    <th><h7 style=" ">PALLETS</h7></th>
+                    <td><h7 style=" ">PALLETS</h7></td>
                     @endif
-                    <th><h7>{{$withdrawal->destination}}</h7></th>
+                    <td><h7>{{$withdrawal->destination}}</h7></td>
  
 
                 <tr>
                
-               <tr class="visible-print">
+               <tr class="visible-print clickable-row" data-href='/withdrawals/{{$withdrawal->id}}'>
              
                      <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$dayOfWeek}} </h6></td>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></td>
                     @else
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></td>
                     @endif
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></td>
                 <tr>
         @endif
         @endforeach
@@ -343,7 +326,7 @@
         <?php $dayOfWeek = date("W", strtotime($withdrawal->date));?>
 
                 @if($withdrawal->destination=='HKJ4')
-                <tr class="hidden-print">
+                <tr class='clickable-row' data-href='/withdrawals/{{$withdrawal->id}}'>
 
                     <td><h7>
                     @if($withdrawal->week==null)
@@ -352,41 +335,41 @@
                        {{$withdrawal->week}}
                     @endif
                     </h7></td>
-                    <th><h7>{{$withdrawal->date}}</h7> </th>
-                    <th><h7>{{$withdrawal->info1}}</h7> </th>
-                    <th><h7>{{$withdrawal->date_to_withdraw}}</h7> </th>
-                    <th><h7>{{$withdrawal->driver}}</h7> </th>
-                    <th><h7>{{$withdrawal->plate_no}}</h7> </th>
-                    <th><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </th>
-                    <th><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></th>
-                    <th><h7>{{$withdrawal->qty1}}</h7></th>
+                    <td><h7>{{$withdrawal->date}}</h7> </td>
+                    <td><h7>{{$withdrawal->info1}}</h7> </td>
+                    <td><h7>{{$withdrawal->date_to_withdraw}}</h7> </td>
+                    <td><h7>{{$withdrawal->driver}}</h7> </td>
+                    <td><h7>{{$withdrawal->plate_no}}</h7> </td>
+                    <td><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </td>
+                    @if($withdrawal->qty3!=null)                     <td><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></td>                     @else                     <td><h7> {{$withdrawal->item1}}</h7></td>                     @endif
+                    <td><h7>{{$withdrawal->qty1}}</h7></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h7 style=" ">SET</h7></th>
+                    <td><h7 style=" ">SET</h7></td>
                     @else
-                    <th><h7 style=" ">PALLETS</h7></th>
+                    <td><h7 style=" ">PALLETS</h7></td>
                     @endif
-                    <th><h7>{{$withdrawal->destination}}</h7></th>
+                    <td><h7>{{$withdrawal->destination}}</h7></td>
  
 
                 <tr>
                
-               <tr class="visible-print">
+               <tr class="visible-print clickable-row" data-href='/withdrawals/{{$withdrawal->id}}'>
              
                      <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$dayOfWeek}} </h6></td>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></td>
                     @else
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></td>
                     @endif
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></td>
                 <tr>
         @endif
         @endforeach
@@ -422,7 +405,7 @@
         <?php $dayOfWeek = date("W", strtotime($withdrawal->date));?>
 
                 @if($withdrawal->destination=='HKJ5')
-                <tr class="hidden-print">
+                <tr class='clickable-row' data-href='/withdrawals/{{$withdrawal->id}}'>
 
                     <td><h7>
                     @if($withdrawal->week==null)
@@ -431,41 +414,41 @@
                        {{$withdrawal->week}}
                     @endif
                     </h7></td>
-                    <th><h7>{{$withdrawal->date}}</h7> </th>
-                    <th><h7>{{$withdrawal->info1}}</h7> </th>
-                    <th><h7>{{$withdrawal->date_to_withdraw}}</h7> </th>
-                    <th><h7>{{$withdrawal->driver}}</h7> </th>
-                    <th><h7>{{$withdrawal->plate_no}}</h7> </th>
-                    <th><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </th>
-                    <th><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></th>
-                    <th><h7>{{$withdrawal->qty1}}</h7></th>
+                    <td><h7>{{$withdrawal->date}}</h7> </td>
+                    <td><h7>{{$withdrawal->info1}}</h7> </td>
+                    <td><h7>{{$withdrawal->date_to_withdraw}}</h7> </td>
+                    <td><h7>{{$withdrawal->driver}}</h7> </td>
+                    <td><h7>{{$withdrawal->plate_no}}</h7> </td>
+                    <td><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </td>
+                    @if($withdrawal->qty3!=null)                     <td><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></td>                     @else                     <td><h7> {{$withdrawal->item1}}</h7></td>                     @endif
+                    <td><h7>{{$withdrawal->qty1}}</h7></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h7 style=" ">SET</h7></th>
+                    <td><h7 style=" ">SET</h7></td>
                     @else
-                    <th><h7 style=" ">PALLETS</h7></th>
+                    <td><h7 style=" ">PALLETS</h7></td>
                     @endif
-                    <th><h7>{{$withdrawal->destination}}</h7></th>
+                    <td><h7>{{$withdrawal->destination}}</h7></td>
  
 
                 <tr>
                
-               <tr class="visible-print">
+               <tr class="visible-print clickable-row" data-href='/withdrawals/{{$withdrawal->id}}'>
              
                      <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$dayOfWeek}} </h6></td>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></td>
                     @else
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></td>
                     @endif
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></td>
                 <tr>
         @endif
         @endforeach
@@ -502,7 +485,7 @@
         <?php $dayOfWeek = date("W", strtotime($withdrawal->date));?>
 
                 @if($withdrawal->destination=='HKJ6')
-                <tr class="hidden-print">
+                <tr class='clickable-row' data-href='/withdrawals/{{$withdrawal->id}}'>
 
                     <td><h7>
                     @if($withdrawal->week==null)
@@ -511,41 +494,41 @@
                        {{$withdrawal->week}}
                     @endif
                     </h7></td>
-                    <th><h7>{{$withdrawal->date}}</h7> </th>
-                    <th><h7>{{$withdrawal->info1}}</h7> </th>
-                    <th><h7>{{$withdrawal->date_to_withdraw}}</h7> </th>
-                    <th><h7>{{$withdrawal->driver}}</h7> </th>
-                    <th><h7>{{$withdrawal->plate_no}}</h7> </th>
-                    <th><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </th>
-                    <th><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></th>
-                    <th><h7>{{$withdrawal->qty1}}</h7></th>
+                    <td><h7>{{$withdrawal->date}}</h7> </td>
+                    <td><h7>{{$withdrawal->info1}}</h7> </td>
+                    <td><h7>{{$withdrawal->date_to_withdraw}}</h7> </td>
+                    <td><h7>{{$withdrawal->driver}}</h7> </td>
+                    <td><h7>{{$withdrawal->plate_no}}</h7> </td>
+                    <td><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </td>
+                    @if($withdrawal->qty3!=null)                     <td><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></td>                     @else                     <td><h7> {{$withdrawal->item1}}</h7></td>                     @endif
+                    <td><h7>{{$withdrawal->qty1}}</h7></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h7 style=" ">SET</h7></th>
+                    <td><h7 style=" ">SET</h7></td>
                     @else
-                    <th><h7 style=" ">PALLETS</h7></th>
+                    <td><h7 style=" ">PALLETS</h7></td>
                     @endif
-                    <th><h7>{{$withdrawal->destination}}</h7></th>
+                    <td><h7>{{$withdrawal->destination}}</h7></td>
  
 
                 <tr>
                 
-               <tr class="visible-print">
+               <tr class="visible-print clickable-row" data-href='/withdrawals/{{$withdrawal->id}}'>
              
                      <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$dayOfWeek}} </h6></td>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></td>
                     @else
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></td>
                     @endif
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></td>
                 <tr>
        @endif
         @endforeach
@@ -580,7 +563,7 @@
         <?php $dayOfWeek = date("W", strtotime($withdrawal->date));?>
 
                 @if($withdrawal->destination=='HKJ7')
-                <tr class="hidden-print">
+                <tr class='clickable-row' data-href='/withdrawals/{{$withdrawal->id}}'>
 
                     <td><h7>
                     @if($withdrawal->week==null)
@@ -589,41 +572,41 @@
                        {{$withdrawal->week}}
                     @endif
                     </h7></td>
-                    <th><h7>{{$withdrawal->date}}</h7> </th>
-                    <th><h7>{{$withdrawal->info1}}</h7> </th>
-                    <th><h7>{{$withdrawal->date_to_withdraw}}</h7> </th>
-                    <th><h7>{{$withdrawal->driver}}</h7> </th>
-                    <th><h7>{{$withdrawal->plate_no}}</h7> </th>
-                    <th><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </th>
-                    <th><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></th>
-                    <th><h7>{{$withdrawal->qty1}}</h7></th>
+                    <td><h7>{{$withdrawal->date}}</h7> </td>
+                    <td><h7>{{$withdrawal->info1}}</h7> </td>
+                    <td><h7>{{$withdrawal->date_to_withdraw}}</h7> </td>
+                    <td><h7>{{$withdrawal->driver}}</h7> </td>
+                    <td><h7>{{$withdrawal->plate_no}}</h7> </td>
+                    <td><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </td>
+                    @if($withdrawal->qty3!=null)                     <td><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></td>                     @else                     <td><h7> {{$withdrawal->item1}}</h7></td>                     @endif
+                    <td><h7>{{$withdrawal->qty1}}</h7></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h7 style=" ">SET</h7></th>
+                    <td><h7 style=" ">SET</h7></td>
                     @else
-                    <th><h7 style=" ">PALLETS</h7></th>
+                    <td><h7 style=" ">PALLETS</h7></td>
                     @endif
-                    <th><h7>{{$withdrawal->destination}}</h7></th>
+                    <td><h7>{{$withdrawal->destination}}</h7></td>
  
 
                 <tr>
                 
-               <tr class="visible-print">
+               <tr class="visible-print clickable-row" data-href='/withdrawals/{{$withdrawal->id}}'>
              
                      <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$dayOfWeek}} </h6></td>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></td>
                     @else
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></td>
                     @endif
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></td>
                 <tr>
        @endif
         @endforeach
@@ -659,7 +642,7 @@
         <?php $dayOfWeek = date("W", strtotime($withdrawal->date));?>
 
                 @if($withdrawal->destination=='NEH')
-                <tr class="hidden-print">
+                <tr class='clickable-row' data-href='/withdrawals/{{$withdrawal->id}}'>
 
                     <td><h7>
                     @if($withdrawal->week==null)
@@ -668,41 +651,41 @@
                        {{$withdrawal->week}}
                     @endif
                     </h7></td>
-                    <th><h7>{{$withdrawal->date}}</h7> </th>
-                    <th><h7>{{$withdrawal->info1}}</h7> </th>
-                    <th><h7>{{$withdrawal->date_to_withdraw}}</h7> </th>
-                    <th><h7>{{$withdrawal->driver}}</h7> </th>
-                    <th><h7>{{$withdrawal->plate_no}}</h7> </th>
-                    <th><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </th>
-                    <th><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></th>
-                    <th><h7>{{$withdrawal->qty1}}</h7></th>
+                    <td><h7>{{$withdrawal->date}}</h7> </td>
+                    <td><h7>{{$withdrawal->info1}}</h7> </td>
+                    <td><h7>{{$withdrawal->date_to_withdraw}}</h7> </td>
+                    <td><h7>{{$withdrawal->driver}}</h7> </td>
+                    <td><h7>{{$withdrawal->plate_no}}</h7> </td>
+                    <td><h7><a href="/withdrawals/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h7> </td>
+                    @if($withdrawal->qty3!=null)                     <td><h7>{{$withdrawal->kg1}} {{$withdrawal->item1}}</h7></td>                     @else                     <td><h7> {{$withdrawal->item1}}</h7></td>                     @endif
+                    <td><h7>{{$withdrawal->qty1}}</h7></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h7 style=" ">SET</h7></th>
+                    <td><h7 style=" ">SET</h7></td>
                     @else
-                    <th><h7 style=" ">PALLETS</h7></th>
+                    <td><h7 style=" ">PALLETS</h7></td>
                     @endif
-                    <th><h7>{{$withdrawal->destination}}</h7></th>
+                    <td><h7>{{$withdrawal->destination}}</h7></td>
  
 
                 <tr>
                
-               <tr class="visible-print">
+               <tr class="visible-print clickable-row" data-href='/withdrawals/{{$withdrawal->id}}'>
              
                      <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$dayOfWeek}} </h6></td>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></th>
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->info1}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->date_to_withdraw}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->driver}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->plate_no}}</h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; "><a href="/withdrawal/{{$withdrawal->id}}">{{$withdrawal->po_reference}}</a></h6> </td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->kg1}} {{$withdrawal->item1}}</h6></td>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->qty1}}</h6></td>
                     @if($withdrawal->qty3!=null)
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">SET</h6></td>
                     @else
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">PALLETS</h6></td>
                     @endif
-                    <th><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></th>
+                    <td><h6 style=" margin-top: 5px; margin-bottom: 5px; ">{{$withdrawal->destination}}</h6></td>
                 <tr>
         @endif
         @endforeach
@@ -723,6 +706,12 @@
  {{$withdrawals->links()}}		
 </div>
 </div>
-
+<script>
+      jQuery(document).ready(function($) {
+    $(".clickable-row").click(function() {
+        window.location = $(this).data("href");
+    });
+});
+      </script>
 
 @endsection
