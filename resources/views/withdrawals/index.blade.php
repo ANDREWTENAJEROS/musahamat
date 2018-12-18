@@ -6,6 +6,7 @@
 {!! Form::open(['action' => 'withdrawalsController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
 
 <ul class="list-inline">
+                
               <li><a href="/withdrawals/create1" class="hidden-print btn btn-default " style="margin: 10px; ">Withdraw Crates</a></li>
               <li><a href="/withdrawals/create" class="hidden-print btn btn-default" style="margin: 10px;">Withdraw Boxes</a></li>
 
@@ -16,7 +17,7 @@
                 <select name="type" class="form-control hidden-print">
                     <option class="dropdown-item" value="set">Set</option>
                     <option class="dropdown-item" value="pallets">Pallets</option>
-                    <option class="dropdown-item" value="">All</option>
+                    <option class="dropdown-item" value="All">All</option>
                 </select>
               </li>
               <li>

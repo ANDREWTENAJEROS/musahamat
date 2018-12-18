@@ -30,7 +30,7 @@ class withdrawalsController extends Controller
     public function index(Request $request)
     {
         // $withdrawals = withdrawals::all();
-        $withdrawals = withdrawals::orderBy('date_to_withdraw','desc')->paginate(40);
+        $withdrawals = withdrawals::orderBy('date_to_withdraw','desc')->where('year',date("Y"))->paginate(100);
         return view('withdrawals.index', compact('withdrawals'))->with('withdrawals', $withdrawals);
         // return view('posts.index', compact('posts'))->with('posts', $posts)->with('users', $users);
 
@@ -101,6 +101,7 @@ class withdrawalsController extends Controller
         // $withdrawals = DB::select(SELECT * FROM withdrawals);
        
 if($request->input('date_to_withdraw')==null){
+     
     $withdrawals = withdrawals::paginate(15);
     if($request->input('findweek')!=null){
         
@@ -123,6 +124,7 @@ if($request->input('date_to_withdraw')==null){
         // $withdrawals = withdrawals::orderBy('item1','desc')->paginate(15);
 
     }
+    
     return view('withdrawals.index', compact('withdrawals'))->with('withdrawals', $withdrawals);
 }else{
       

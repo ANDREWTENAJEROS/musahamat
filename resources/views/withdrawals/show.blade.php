@@ -10,7 +10,7 @@
 
     }
     </style>
-    <script>print();</script>
+    <!-- <script>print();</script> -->
     @if(!Auth::guest())
             {!!Form::open(['action' => ['withdrawalsController@destroy', $withdrawals->id], 'method' => 'supplier', 'class' => 'pull-right'])!!}
                 {{Form::hidden('_method', 'DELETE')}}
