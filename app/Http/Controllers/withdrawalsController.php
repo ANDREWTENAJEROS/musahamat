@@ -247,7 +247,8 @@ if($request->input('date_to_withdraw')==null){
 
         
         $withdrawals->save();
-        return redirect('/withdrawals')->with('success', 'withdrawals Updated');
+        $redirectto = '/withdrawals/'.$withdrawals->id;
+        return redirect($redirectto)->with('success', 'ATW Updated');
     }
 
     /**

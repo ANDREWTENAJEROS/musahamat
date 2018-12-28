@@ -12,9 +12,14 @@
             <h4>Recipient</h4>
            <table class="table table-striped">
            <tr>
-            <td>
-            {{Form::label('company', 'Comapny name')}}
-            {{Form::text('company', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+           <td>
+            {{Form::label('company', 'Company name')}}
+            <select name="company" class="form-control hidden-print">
+                    <option class="dropdown-item" value="DOLE PHILIPPINES INC">DOLE PHILIPPINES INC</option>
+                    <option class="dropdown-item" value="MINDANAO CORRUGSTED FIBRE BOARD INC">MINDANAO CORRUGSTED FIBRE BOARD INC</option>
+                    <option class="dropdown-item" value="STENIEL MINDANAO PACKAGING CORPORATION">STENIEL MINDANAO PACKAGING CORPORATION</option>
+                </select>
+            {{--Form::text('company', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])--}}
             </td>
             <td>
             {{Form::label('company', 'Recipient Person')}}
@@ -22,7 +27,12 @@
             </td>
             <td>
             {{Form::label('company', 'Boxplant')}}
-            {{Form::text('info1', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+            <select name="info1" class="form-control hidden-print">
+                    <option class="dropdown-item" value="DOLE">DOLE</option>
+                    <option class="dropdown-item" value="MINCOR">MINCOR</option>
+                    <option class="dropdown-item" value="STENIEL">STENIEL</option>
+                </select>
+            {{--Form::text('info1', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])--}}
             </td>
             
             </tr>
@@ -30,7 +40,14 @@
             <tr>
             <td>
             {{Form::label('address', 'Address')}}
-            {{Form::text('address', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+                {{--Form::select('address', array('PALLET SHED, CONTAINER YARD' => 'DOLE - PALLET SHED, CONTAINER YARD', 'Km. 12, SASA DAVAO CITY' => 'MINCOR - Km. 12, SASA DAVAO CITY', 'Km. 25, BUNAWAN, DAVAO CITY' => 'STENIEL - Km. 25, BUNAWAN, DAVAO CITY'))--}}
+                <select name="address" class="form-control hidden-print">
+                    <option class="dropdown-item" value="PALLET SHED, CONTAINER YARD">DOLE - PALLET SHED, CONTAINER YARD</option>
+                    <option class="dropdown-item" value="Km. 12, SASA DAVAO CITY">MINCOR - Km. 12, SASA DAVAO CITY</option>
+                    <option class="dropdown-item" value="Km. 25, BUNAWAN, DAVAO CITY">STENIEL - Km. 25, BUNAWAN, DAVAO CITY</option>
+                </select>
+                
+            {{--Form::text('address', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])--}}
             </td>
             <td>
             {{Form::label('date', 'Document Date')}}
@@ -38,7 +55,7 @@
              </td>
              <td>
              {{Form::label('date', 'Week number')}}
-            {{Form::number('week', $dayOfWeek = date("W"), ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+             {{Form::number('week', date("W"), ['class' => 'form-control','min'=>'1','max'=>'52', 'required' => 'required' ,'placeholder' => ' '])}}
             {{Form::number('year', date("Y"), ['class' => 'form-control hidden ', 'style'=>'display:hidden', 'required' => 'required' ,'placeholder' => ' '])}}
              </td>
              <td></td>
@@ -75,7 +92,17 @@
             </td>
             <td>
             {{Form::label('destination', 'Destination')}}
-            {{Form::text('destination', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
+            <select name="destination" class="form-control hidden-print">
+                    <option class="dropdown-item" value="HKJ1">HKJ1</option>
+                    <option class="dropdown-item" value="HKJ2">HKJ2</option>
+                    <option class="dropdown-item" value="HKJ3">HKJ3</option>
+                    <option class="dropdown-item" value="HKJ4">HKJ4</option>
+                    <option class="dropdown-item" value="HKJ5">HKJ5</option>
+                    <option class="dropdown-item" value="HKJ6">HKJ6</option>
+                    <option class="dropdown-item" value="HKJ7">HKJ7</option>
+                    <option class="dropdown-item" value="NADER">NADER</option>
+                </select>
+            {{--Form::text('destination', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])--}}
              </td>
             </tr>
             </table>
@@ -122,14 +149,19 @@
            
             <tr>
             <td>
-            {{Form::label('status', 'Status')}}
-            {{Form::text('status', '', ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
-            </td>
+            {{Form::label('status', 'Current Status')}}
+            <select name="status" class="form-control hidden-print">
+                    <option class="dropdown-item" value="HKJ1">Pending</option>
+                    <option class="dropdown-item" value="HKJ2">Received</option>
+                    <option class="dropdown-item" value="HKJ3">Cancelled</option>
+            </select>
+        </td>
             <td>
             {{Form::label('actual_withdraw_date	', 'Actual Withdraw Date	')}}
-            {{Form::date('actual_withdraw_date	', '', ['class' => 'form-control' ,'placeholder' => ' '])}}
+            {{Form::date('actual_withdraw_date	', '', ['class' => 'form-control', 'style'=>'width:50%' ,'placeholder' => ' '])}}
 
             </td>
+            
             </tr>
             </table>
 

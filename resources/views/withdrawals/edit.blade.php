@@ -12,7 +12,7 @@
 <table class="table table-striped">
 <tr>
             <td>
-            {{Form::label('company', 'Comapny name')}}
+            {{Form::label('company', 'Company name')}}
             {{Form::text('company', $withdrawals->company, ['class' => 'form-control', 'required' => 'required' ,'placeholder' => ' '])}}
             </td>
             <td>

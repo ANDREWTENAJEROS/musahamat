@@ -21,7 +21,12 @@
     <a onclick="print()" class="hidden-print btn btn-default pull-right" style="margin-right: 20px;">Print</a>
     <div class="show-print">
    
-
+    <div class="hidden-print" style="margin-top:10px">
+    <div class="alert alert-success">
+    <center>Current status: {{$withdrawals->status}}</center>
+    </div>
+    
+    </div>
     <table class="table" style=" margin-left: 50px; ">
         <tr>
             <td style=" padding-top: 0px; padding-bottom: 0px; " style=" width: 66px; "><h5>Date<h5></td>
@@ -45,7 +50,39 @@
     </table>
     </br>
     <center style=" "><u><h4 syle="text:bold; ">   AUTHORITY TO WITHDRAW   </h4></u></center>
-    <table class="table table-striped" style=" margin-left: 50px; ">
+    <table class="table table-striped visible-print" style=" margin-left: 150px; ">
+        <!-- <tr>
+            <th><h5></h5></th>
+            <th><h5></h5></th>
+            <th><h5></h5></th>
+            <th><h5></h5></th>
+        </tr> -->
+        <tr style=" width: 150px; ">
+            <td style=" padding-top: 5px; padding-bottom: 0px;  width: 150px; "><h5>Date to Withdraw<h5></td>
+            <td style=" padding-top: 5px; padding-bottom: 0px; text-align:center ; width:50px;"><h5>:<h5></td>
+            <td style=" padding-top: 5px; padding-bottom: 0px; text-align:center; border-bottom: 1px solid #ccc; width:30%;"><h5>{{$withdrawals->date_to_withdraw}}<h5></td>
+            <td style=" padding-top: 5px; padding-bottom: 0px; "><h5><h5></td>
+        </tr>
+        <tr>
+            <td style=" padding-top: 5px; padding-bottom: 0px; "><h5>Authorize Driver<h5></td>
+            <td style=" padding-top: 5px; padding-bottom: 0px; text-align:center;"><h5>:<h5></td>
+            <td style=" padding-top: 5px; padding-bottom: 0px; text-align:center; border-bottom: 1px solid #ccc;"><h5>{{$withdrawals->driver}}<h5></td>
+            <td style=" padding-top: 5px; padding-bottom: 0px; "><h5><h5></td>
+        </tr>
+        <tr>
+            <td style=" padding-top: 5px; padding-bottom: 0px; "><h5>Truck PLate No.<h5></td>
+            <td style=" padding-top: 5px; padding-bottom: 0px; text-align:center;"><h5>:<h5></td>
+            <td style=" padding-top: 5px; padding-bottom: 0px; text-align:center; border-bottom: 1px solid #ccc;"><h5>{{$withdrawals->plate_no}}<h5></td>
+            <td style=" padding-top: 5px; padding-bottom: 0px; "><h5><h5></td>
+        </tr>
+        <tr>
+            <td style=" padding-top: 5px; padding-bottom: 0px; "><h5>NOTE<h5></td>
+            <td style=" padding-top: 5px; padding-bottom: 0px; text-align:center;"><h5>:<h5></td>
+            <td style=" padding-top: 5px; padding-bottom: 0px; text-align:center; border-bottom: 1px solid #ccc;"><h5>MUSAHAMAT TRUCKING<h5></td>
+            <td style=" padding-top: 5px; padding-bottom: 0px; "><h5><h5></td>
+        </tr>
+    </table>
+    <table class="table table-striped hidden-print" style=" margin-left: 200px; ">
         <!-- <tr>
             <th><h5></h5></th>
             <th><h5></h5></th>
